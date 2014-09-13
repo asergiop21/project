@@ -8,6 +8,6 @@ listen "/tmp/unicorn.project.sock"
 worker_processes 2
 timeout 30
 
-before_exec do |_|
-    ENV["BUNDLE_GEMFILE"] = File.join(root, 'Gemfile')
-end
+#before_exec do |_|
+#    ENV["BUNDLE_GEMFILE"] = File.join(root, 'Gemfile')
+#end
