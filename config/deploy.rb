@@ -24,7 +24,8 @@ set :repo_url, 'git@github.com:asergiop21/project.git'
 # set :pty, true
 
 # Default value for :linked_files is []
-# set :linked_files, %w{config/database.yml}
+#set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/secrets.yml}
 
 # Default value for linked_dirs is []
 # set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
