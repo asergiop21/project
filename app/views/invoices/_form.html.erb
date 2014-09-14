@@ -22,7 +22,8 @@
         <div class="col-md-12 line2 panel-body">
           <%= f.fields_for :orders, method: 'get' do |ph| %>
             <%=render 'orders', f: ph  %>
-        <% end %>
+  
+            <%=link_to_add_fields 'Agregar  Item', f , :orders %><% end %>
         </div> 
       </div>
       <div class ="total_1 pull-right h2">

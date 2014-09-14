@@ -12,7 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui/autocomplete
 //= require turbolinks
-//= require jquery_ujs
 //= require twitter/bootstrap
-//= require_tree .
+//= require autocomplete-rails
+//= require articles
+//= require invoices
+//= require customers
+//= require orders

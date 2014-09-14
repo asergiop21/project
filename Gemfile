@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
+gem 'rails4-autocomplete', '~> 1.1.1'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -18,6 +19,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'simple_form'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -32,7 +34,8 @@ gem 'will_paginate', '~>3.0'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
- gem 'unicorn'
+
+
 
 # Use Capistrano for deployment
 group :development do 
@@ -40,8 +43,15 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
+
+end
+group :production do
+
+  gem 'unicorn'
   gem 'unicorn-rails'
 end
- # Use debugger
+
+
+# Use debugger
 # gem 'debugger', group: [:development, :test]
 

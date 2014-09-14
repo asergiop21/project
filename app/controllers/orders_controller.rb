@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-
+autocomplete :article, :name, :full => true
   # GET /orders
   # GET /orders.json
   def index
@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
+    @articles = Article.con_nombre_barcode(params[:q]) if params[:q].present?
     @order = Order.new
   end
 
