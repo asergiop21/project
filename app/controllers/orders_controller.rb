@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-autocomplete :article, :name, :full => true
+autocomplete :article, :name,  :extra_data=>[:price_cost, :quantity]
   # GET /orders
   # GET /orders.json
   def index

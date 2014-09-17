@@ -5,8 +5,6 @@
     <div class="col-md-2 sidebar">
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
-
       <div class="has-error">
         <%= f.error_notification %>
       </div>         
@@ -22,9 +20,8 @@
         <div class="col-md-12 line2 panel-body">
           <%= f.fields_for :orders, method: 'get' do |ph| %>
             <%=render 'orders', f: ph  %>
-  
             <%=link_to_add_fields 'Agregar  Item', f , :orders %><% end %>
-        </div> 
+      </div> 
       </div>
       <div class ="total_1 pull-right h2">
         <h2> Total</h2>

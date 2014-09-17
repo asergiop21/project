@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :brands
+
   resources :orders do
    get :autocomplete_article_name, :on => :collection
 end

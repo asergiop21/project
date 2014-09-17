@@ -5,10 +5,5 @@ class Order < ActiveRecord::Base
 
   attr_accessor :quantity_stock, :name
 
-  def order_name
-          Article.name  
-  end
-
-
 
 end
