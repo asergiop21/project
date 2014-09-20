@@ -7,7 +7,7 @@ has_many :orders
 
 
    def label
-           [barcode, name,supplier.try(:name),"$  #{price_total}"].compact.join ' | '
+           [barcode, "$  #{price_total}"].compact.join ' | '
               end
 
       def as_json options = nil
