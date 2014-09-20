@@ -12,7 +12,7 @@
       </div>
       <div class="row panel panel-default">
         <div class=" col-md-12  panel-heading">
-          <div class="col-md-4 text-center">Articles</div>
+          <div class="col-md-4 text-center">Producto</div>
           <div class="col-md-1 text-center">Cantidad</div>
           <div class="col-md-2 text-center">Precio Unit</div>
           <div class="col-md-2 text-center">Precio Total</div>
@@ -20,7 +20,10 @@
         <div class="col-md-12 line2 panel-body">
           <%= f.fields_for :orders, method: 'get' do |ph| %>
             <%=render 'orders', f: ph  %>
-            <%=link_to_add_fields 'Agregar  Item', f , :orders %><% end %>
+          <div>
+            <%=link_to_add_fields 'Agregar  Producto', f , :orders %><% end %>
+          </div>
+
       </div> 
       </div>
       <div class ="total_1 pull-right h2">

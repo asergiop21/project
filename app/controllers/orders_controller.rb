@@ -14,8 +14,9 @@ autocomplete :article, :name,  :extra_data=>[:price_cost, :quantity]
 
   # GET /orders/new
   def new
-    @articles = Article.con_nombre_barcode(params[:q]) if params[:q].present?
+
     @order = Order.new
+
   end
 
   # GET /orders/1/edit

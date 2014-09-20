@@ -8,7 +8,6 @@ gem 'rails4-autocomplete', '~> 1.1.1'
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'devise'
-
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -43,7 +42,7 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
-
+  gem 'pry'
 end
 group :production do
 

@@ -1,11 +1,11 @@
-$(document).ready(function(){
+/*$(document).ready(function(){
    $('#printOut').click(function(e){
                e.preventDefault();
                            /*var w = window.open();
                             *           
                             *                       #w.window.print();
-                            *                                   #w.document.close();*/
+                            *                                   #w.document.close();/
                            window.print();
                                        return false;
                                                });
-});
+});*/
