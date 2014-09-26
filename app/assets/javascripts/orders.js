@@ -1,8 +1,8 @@
 $(document).ready(function(){
 
   $(document).on('click','.remove_fields_orders', function(event){
-    $(this).closest('div.line').find('input[type=hidden]').val('1');
-    var price_remove = $(this).closest('div.line').find('input.price_subtotal').val();
+    $(this).closest('div.line2').find('input[type=hidden]').val('1');
+    var price_remove = $(this).closest('div.line2').find('input.price_subtotal').val();
     var price_total = $('#invoice_price_total').val();
     if (price_total > 0)
   {
@@ -10,11 +10,17 @@ $(document).ready(function(){
     valor = valor.toFixed(2);
   }
   price_total = $('#invoice_price_total').val(valor);
-  $(this).closest('div.line').hide()
+  $(this).closest('div.line2').hide()
     event.preventDefault();
   });
 
-  $('div.line2').on('focus', '[data-autocomplete-for]', function(){
+  $('div.line2').on('keyup', '[data-autocomplete-for]', function(e){
+
+    if (e.which == 13 ){
+      console.log(e.which);
+      e.preventDefault();
+    }
+    
     var input = $(this);
     input.autocomplete({
       source: function(request, response) {
@@ -31,6 +37,7 @@ $(document).ready(function(){
         });
       },
       minLength: 2,
+      autoFocus: true,
       select: function(event, ui) {
         input.val(ui.item.label);
         var field = this.id;
@@ -40,9 +47,11 @@ $(document).ready(function(){
         var quantity_stock = '#invoice_orders_attributes_' + id[3] + '_quantity_stock';
 
         $(field_article_id).val(ui.item.item.id);
-        $(field_unit_price).val(ui.item.item.price_cost);
+        $(field_unit_price).val(ui.item.item.price_total);
       }
     }).removeAttr('data-autocomplete-field');
+
+
   });
 
   $(document).on('blur', '.quantity' , function(event){
@@ -80,7 +89,8 @@ $(document).ready(function(){
   });
 
   });
-  $(document).on('keydown', 'input, select, textarea', function(e) {
+
+/*  $(document).on('keydown', 'input, select, textarea', function(e) {
     var a = this.id 
     var self = $(this),
     form = self.parents('form:eq(0)'),
@@ -99,5 +109,5 @@ $(document).ready(function(){
     return false;
   }
   });
-
+*/
 });
