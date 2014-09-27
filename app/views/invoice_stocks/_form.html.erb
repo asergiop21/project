@@ -1,0 +1,33 @@
+<%= simple_form_for(@invoice_stock) do |f| %>
+  <% if @invoice_stock.errors.any? %>
+  <div id="error_explanation">
+  <h2><%= pluralize(@invoice_stock.errors.count, "error") %> prohibited this invoice_stock from being saved:</h2>
+
+  <ul>
+    <% @invoice_stock.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+  <% end %>
+  </ul>
+</div>
+  <% end %>
+
+<div class="field">
+  <%= f.input :name %>
+</div>
+
+<div class="col-md-12 line2 panel-body">
+  <%= f.fields_for :stocks, method: 'get' do |ph| %>
+    <%=render 'stocks', f: ph  %>
+  <div>
+    <%=link_to_add_fields 'Agregar Item', f , :stocks %>
+  </div>
+<% end %>
+
+</div> 
+
+
+
+<div class="actions">
+  <%= f.submit %>
+</div>
+<% end %>

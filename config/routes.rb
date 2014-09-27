@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :invoice_stocks
+
+  resources :stocks
+
   resources :brands
 
   resources :orders do
@@ -9,9 +13,6 @@ end
   resources :suppliers
 
   resources :articles
-
-
-
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
