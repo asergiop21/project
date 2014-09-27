@@ -1,45 +1,23 @@
-<%= form_for(@article) do |f| %>
-  <% if @article.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+<%= simple_form_for(@article) do |f| %>
 
-      <ul>
-      <% @article.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div class="container"> 
+  <div class="form-inputs">
+    <div class="row-fluid">
+      <%= f.error_notification %>
+      <div class="span5">
+
+        <%= f.input :name, label: 'Nombre', :input_html => {class: 'form-control'} %>
+        <%= f.input :price_cost, label: 'Precio Costo', as: :string, :input_html => {class: 'form-control'} %>
+        <%= f.input :percentaje, label: 'Porcentaje',as: :string, :input_html => {class: 'form-control'} %>
+        <%= f.input :price_total, label: 'Precio Total',as: :string, :input_html => {class: 'form-control'}  %>
+        <%= f.input :quantity, label: 'Cantidad',as: :string, :input_html => {class: 'form-control'}   %>
+        <%= f.input :barcode, label: 'Codigo de Barra', :input_html => {class: 'form-control'}    %>
+        <%= f.input :supplier_id, label: 'Proveedor',as: :string, :input_html => {class: 'form-control'}    %>
+      </div>
+      <div class="actions ">
+        <%= f.submit :input_html => {class: 'btn btn-primary'} %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :price_cost %><br>
-    <%= f.text_field :price_cost %>
-  </div>
-  <div class="field">
-    <%= f.label :percentaje %><br>
-    <%= f.text_field :percentaje %>
-  </div>
-  <div class="field">
-    <%= f.label :price_total %><br>
-    <%= f.text_field :price_total %>
-  </div>
-  <div class="field">
-    <%= f.label :quantity %><br>
-    <%= f.text_field :quantity %>
-  </div>
-  <div class="field">
-    <%= f.label :barcode %><br>
-    <%= f.text_field :barcode %>
-  </div>
-  <div class="field">
-    <%= f.label :supplier_id %><br>
-    <%= f.number_field :supplier_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+</div>
 <% end %>

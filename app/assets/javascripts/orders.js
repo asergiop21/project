@@ -17,10 +17,10 @@ $(document).ready(function(){
   $('div.line2').on('keydown', '[data-autocomplete-for]', function(event){
 
     if (event.which == 13 ){
-        console.log(event.which);
-        event.preventDefault();
+      console.log(event.which);
+      event.preventDefault();
     }
-    
+
     var input = $(this);
     input.autocomplete({
       source: function(request, response) {
@@ -59,16 +59,16 @@ $(document).ready(function(){
     var field = this.id;
     var id = field.split("_");
     var input = $('#invoice_orders_attributes_'+ id[3]+ '_quantity').val();
-    if (input == 0)
-  {
-    $(this).val(0);
-    input = 0;
-  }
+    if (input == "" || input == isNaN)
+    {
+      $(this).val(0);
+      input = 0;
+    }
   var price_subtotal = '#invoice_orders_attributes_' + id[3] + '_price_total';
   var price = $('#invoice_orders_attributes_' + id[3] + '_price_unit').val();
   var price_x_quantity = parseFloat(input) * parseFloat(price);
 
-  $(price_subtotal).val(price_x_quantity);
+  $(price_subtotal).val(price_x_quantity.toFixed(2));
 
   var prr = $('#invoice_price_total').val();
   if (prr == 0)
@@ -86,28 +86,28 @@ $(document).ready(function(){
 
     $('#invoice_price_total').val(valor.toFixed(2));
   });
-    if (event.which == 13 ){
-      event.preventDefault();
-    }
+  if (event.which == 13 ){
+    event.preventDefault();
+  }
   });
 
-/*var tab =  $(document).on('keydown', 'input, select, textarea', function(e) {
+  /*var tab =  $(document).on('keydown', 'input, select, textarea', function(e) {
     var a = this.id 
     var self = $(this),
     form = self.parents('form:eq(0)'),
     focusable,
     next;
 
-  if (e.keyCode == 13) {
+    if (e.keyCode == 13) {
     focusable = form.find('input,a,textarea').filter(':visible').not(".remove_fields_orders");
     next = focusable.eq(focusable.index(this)+1);
     if (next.length) {
-      next.focus();
-      next.select();
+    next.focus();
+    next.select();
     } else {
-      form.submit();
+    form.submit();
     }
     return false;
-  }
-  });*/
+    }
+    });*/
 });
