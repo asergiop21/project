@@ -14,11 +14,11 @@ $(document).ready(function(){
     event.preventDefault();
   });
 
-  $('div.line2').on('keyup', '[data-autocomplete-for]', function(e){
+  $('div.line2').on('keydown', '[data-autocomplete-for]', function(event){
 
-    if (e.which == 13 ){
-      console.log(e.which);
-      e.preventDefault();
+    if (event.which == 13 ){
+        console.log(event.which);
+        event.preventDefault();
     }
     
     var input = $(this);
@@ -48,6 +48,7 @@ $(document).ready(function(){
 
         $(field_article_id).val(ui.item.item.id);
         $(field_unit_price).val(ui.item.item.price_total);
+
       }
     }).removeAttr('data-autocomplete-field');
 
@@ -55,6 +56,7 @@ $(document).ready(function(){
   });
 
   $(document).on('blur', '.quantity' , function(event){
+
 
     var field = this.id;
     var id = field.split("_");
@@ -87,10 +89,9 @@ $(document).ready(function(){
 
     $('#invoice_price_total').val(valor.toFixed(2));
   });
-
   });
 
-/*  $(document).on('keydown', 'input, select, textarea', function(e) {
+/*var tab =  $(document).on('keydown', 'input, select, textarea', function(e) {
     var a = this.id 
     var self = $(this),
     form = self.parents('form:eq(0)'),
@@ -108,6 +109,5 @@ $(document).ready(function(){
     }
     return false;
   }
-  });
-*/
+  });*/
 });
