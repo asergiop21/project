@@ -52,11 +52,9 @@ $(document).ready(function(){
       }
     }).removeAttr('data-autocomplete-field');
 
-
   });
 
-  $(document).on('blur', '.quantity' , function(event){
-
+  $(document).on('blur keydown', '.quantity', function(event){
 
     var field = this.id;
     var id = field.split("_");
@@ -66,7 +64,6 @@ $(document).ready(function(){
     $(this).val(0);
     input = 0;
   }
-
   var price_subtotal = '#invoice_orders_attributes_' + id[3] + '_price_total';
   var price = $('#invoice_orders_attributes_' + id[3] + '_price_unit').val();
   var price_x_quantity = parseFloat(input) * parseFloat(price);
@@ -89,6 +86,9 @@ $(document).ready(function(){
 
     $('#invoice_price_total').val(valor.toFixed(2));
   });
+    if (event.which == 13 ){
+      event.preventDefault();
+    }
   });
 
 /*var tab =  $(document).on('keydown', 'input, select, textarea', function(e) {
