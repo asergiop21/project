@@ -8,6 +8,18 @@ class Stock < ActiveRecord::Base
   before_save :update_quantity
 
 
+  def name
+    @name
+  end
+
+  def name=(val)
+    @name = val
+  end
+
+
+
+
+
   def update_quantity
    
     @quantity_current = Article.find(article_id)
@@ -17,8 +29,6 @@ class Stock < ActiveRecord::Base
     self.quantity += @quantity_current.quantity
 
     @due_date = due_date
-    
-    pry
     @quantity_current.update_columns quantity: self.quantity, supplier_id: supplier_id, due_date: due_date
    
   end
