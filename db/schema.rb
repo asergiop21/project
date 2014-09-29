@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140927215608) do
+ActiveRecord::Schema.define(version: 20140929123127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20140927215608) do
     t.integer  "invoice_stock_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "due_date"
   end
 
   create_table "suppliers", force: true do |t|

@@ -14,6 +14,11 @@
   <div class=" col-md-2">
     <%= f.input :quantity, label: false, as: :string, :input_html => {:class => "form-control  quantity "}  %>
   </div>
+ 
+  <div class=" col-md-2">
+    <%= f.input :due_date, label: false, as: :string, :input_html => {:class => "form-control  quantity "}  %>
+  </div>
+  
   <div class="col-md-2">
             <%= f.input :supplier_id, label: false do %>
                <%= f.collection_select :supplier_id,  Supplier.order(:name), :id, :name, class: "form-control", label: false %>

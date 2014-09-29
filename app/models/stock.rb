@@ -15,7 +15,11 @@ class Stock < ActiveRecord::Base
     self.quantity = 0 if self.quantity.nil?
     
     self.quantity += @quantity_current.quantity
-    @quantity_current.update_columns quantity: self.quantity, supplier_id: supplier_id
+
+    @due_date = due_date
+    
+    pry
+    @quantity_current.update_columns quantity: self.quantity, supplier_id: supplier_id, due_date: due_date
    
   end
 end
