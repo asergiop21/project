@@ -26,7 +26,7 @@ class InvoiceStocksController < ApplicationController
   # POST /invoice_stocks.json
   def create
     @invoice_stock = InvoiceStock.new(invoice_stock_params)
-
+    #@quantity = Stock.update_quantity(invoice_stock_params[:stocks_attributes])
     respond_to do |format|
       if @invoice_stock.save
         format.html { redirect_to @invoice_stock, notice: 'Invoice stock was successfully created.' }
@@ -70,6 +70,6 @@ class InvoiceStocksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_stock_params
-      params.require(:invoice_stock).permit(:name, stocks_attributes:[:article_id, :price_cost, :quantity] )
+      params.require(:invoice_stock).permit(:name, stocks_attributes:[:article_id, :price_cost, :quantity, :supplier_id] )
     end
 end

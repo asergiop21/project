@@ -11,23 +11,31 @@
 </div>
   <% end %>
 
-<div class="field">
-  <%= f.input :name %>
+<div class="col-md-4">
+  <%= f.input :name, label: 'Nombre', input_html: {class: 'form-control'} %> 
 </div>
+<br>
+<br>
+      <div class="row panel panel-default">
+        <div class=" col-md-12  panel-heading">
+          <div class="col-md-4 text-center">Producto</div>
+          <div class="col-md-2 text-center">Cantidad</div>
+          <div class="col-md-2 text-center">Proveedor</div>
+        </div>
 
-<div class="col-md-12 line2 panel-body">
+<div class="col-md-12 line3 panel-body">
   <%= f.fields_for :stocks, method: 'get' do |ph| %>
     <%=render 'stocks', f: ph  %>
-  <div>
+  <div class="text-center">
     <%=link_to_add_fields 'Agregar Item', f , :stocks %>
   </div>
 <% end %>
 
 </div> 
-
+</div>
 
 
 <div class="actions">
-  <%= f.submit %>
+  <%= f.submit "Guardar", class: 'btn btn-primary'  %>
 </div>
 <% end %>

@@ -12,7 +12,9 @@
         <%= f.input :price_total, label: 'Precio Total',as: :string, :input_html => {class: 'form-control'}  %>
         <%= f.input :quantity, label: 'Cantidad',as: :string, :input_html => {class: 'form-control'}   %>
         <%= f.input :barcode, label: 'Codigo de Barra', :input_html => {class: 'form-control'}    %>
-        <%= f.input :supplier_id, label: 'Proveedor',as: :string, :input_html => {class: 'form-control'}    %>
+        <%= f.input :supplier_id, label: 'Proveedor ' do %>
+          <%= f.collection_select :supplier_id,  Supplier.order(:name), :id, :name, class: "form-control", label: false %>
+      <% end  %>
       </div>
       <div class="actions ">
         <%= f.submit :input_html => {class: 'btn btn-primary'} %>

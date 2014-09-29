@@ -19,3 +19,4 @@
 //= require invoices
 //= require customers
 //= require orders
+//= require stocks
