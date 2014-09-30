@@ -1,0 +1,32 @@
+<h3>Listado de Remitos</h3>
+
+<table class="table">
+  <tr>
+    <th>Remito</th>
+    <th>Fecha</th>
+    <th>Price total</th>
+    <th>Total</th>
+    <th></th>
+  </tr>
+
+<% @customers.each do |invoice| %>
+  <tr>
+    <td><%= invoice.id %></td>
+    <td><%= invoice.created_at.strftime("%d/%m/%Y") %></td>
+    <td><%= invoice.price_total %></td>
+    <td></td>
+    </tr>
+<% end %>
+    
+<tr>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+  
+  
+  </table>
+
+<br />
+

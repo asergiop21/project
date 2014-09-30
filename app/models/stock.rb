@@ -9,15 +9,9 @@ class Stock < ActiveRecord::Base
 
 
   def name
-    @name
+#    name = Article.where(id: article_id).pluck(:barcode, :name) if !article_id.nil? 
+
   end
-
-  def name=(val)
-    @name = val
-  end
-
-
-
 
 
   def update_quantity
@@ -25,9 +19,7 @@ class Stock < ActiveRecord::Base
     @quantity_current = Article.find(article_id)
     @quantity_current.quantity = 0 if @quantity_current.quantity.nil?
     self.quantity = 0 if self.quantity.nil?
-    
     self.quantity += @quantity_current.quantity
-
     @due_date = due_date
     @quantity_current.update_columns quantity: self.quantity, supplier_id: supplier_id, due_date: due_date
    

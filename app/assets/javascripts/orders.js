@@ -20,7 +20,6 @@ $(document).ready(function(){
       console.log(event.which);
       event.preventDefault();
     }
-
     var input = $(this);
     input.autocomplete({
       source: function(request, response) {
@@ -58,12 +57,12 @@ $(document).ready(function(){
 
     var field = this.id;
     var id = field.split("_");
-    var input = $('#invoice_orders_attributes_'+ id[3]+ '_quantity').val();
-    if (input == "" || input == isNaN)
+   var input = $('#invoice_orders_attributes_'+ id[3]+ '_quantity').val();
+/*    if (input == "" || input == isNaN)
     {
       $(this).val(0);
       input = 0;
-    }
+    }*/
   var price_subtotal = '#invoice_orders_attributes_' + id[3] + '_price_total';
   var price = $('#invoice_orders_attributes_' + id[3] + '_price_unit').val();
   var price_x_quantity = parseFloat(input) * parseFloat(price);
@@ -71,14 +70,13 @@ $(document).ready(function(){
   $(price_subtotal).val(price_x_quantity.toFixed(2));
 
   var prr = $('#invoice_price_total').val();
-  if (prr == 0)
+  if (prr == 0 || prr == isNaN)
   {
     prr = 0.00;
   }
   valor = 0;
 
   $(document).find('.price_subtotal').each(function(){
-
     re = $(this).val();
     if (!isNaN(re)){
       valor += parseFloat(re);

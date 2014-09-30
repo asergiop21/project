@@ -8,6 +8,21 @@
       <div class="has-error">
         <%= f.error_notification %>
       </div>         
+     
+        <div class="col-md-8 customer">
+           <%= simple_form_for '', method: 'get' do |f| %>
+
+                  <%= f.input( :q, label: 'Clientes', input_html: {
+                   class: 'form-control',
+                   data: {'autocomplete-field' => true,
+                          'autocomplete-for' => '#_customer_id',
+                          'autocomplete-url' => customers_path(format: :json)
+                } 
+                }) %>
+
+             <% end %> 
+                            <%= f.input :customer_id, as: :hidden%>
+        </div>
       <div class="col-md-5 search">
       </div>
       <div class="row panel panel-default">

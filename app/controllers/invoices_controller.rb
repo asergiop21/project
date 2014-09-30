@@ -5,6 +5,8 @@ class InvoicesController < ApplicationController
   # GET /invoices.json
   def index
     @invoices = Invoice.all
+    @price_total = Invoice.total
+
   end
 
   # GET /invoices/1
@@ -25,7 +27,10 @@ class InvoicesController < ApplicationController
   # POST /invoices
   # POST /invoices.json
   def create
+    
     @invoice = Invoice.new(invoice_params)
+    @id = @invoice.orders(params[:article_id])
+    @quantity = Article.quantity_order(@id)
 
     respond_to do |format|
       if @invoice.save
@@ -70,6 +75,6 @@ class InvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
-      params.require(:invoice).permit(:customer_id, :price_total, orders_attributes: [:article_id, :price_unit])
+      params.require(:invoice).permit(:customer_id, :price_total, orders_attributes: [:article_id, :quantity, :price_unit, :price_total])
     end
 end

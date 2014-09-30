@@ -1,21 +1,13 @@
 $(document).ready(function(){
-
-   $(document).on('click','.remove_fields', function(event){
-
-      $(this).prev('input[type=hidden]').val('1')
-      $(this).closest('fieldset').hide()
-      event.preventDefault();
-   });
-
    $('.add_fields').click(function(event){
-      time = new Date().getTime();
-      regexp = new RegExp($(this).data('id'), 'g');
-      $(this).before($(this).data('fields').replace(regexp, time))
-      $('.order').focus(); 
-   event.preventDefault();
-   });
+           time = new Date().getTime();
+                 regexp = new RegExp($(this).data('id'), 'g');
+                       $(this).before($(this).data('fields').replace(regexp, time))
+           $('.order').focus(); 
+      event.preventDefault();
+         });
 
-   $('div.search').on('focus', '[data-autocomplete-field]', function(){
+   $('div.customer').on('focus', '[data-autocomplete-field]', function(){
       var input = $(this);
       input.autocomplete({
          source: function(request, response) {
@@ -25,7 +17,7 @@ $(document).ready(function(){
                success: function(data) {
                   response(
                      $.map(data, function(item) {
-                        return { label: item.lastname + " "+ item.name , item: item};
+                        return { label: item.lastname + " " + item.name , item: item};
                      })
                      );
                },
@@ -33,7 +25,8 @@ $(document).ready(function(){
          },
          select: function(event, ui) {
             input.val(ui.item.label);
-            $(input.data('autocomplete-for')).val(ui.item.item.id);
+            
+            $('#invoice_customer_id').val(ui.item.item.id);
          }
       }).removeAttr('data-autocomplete-field'); });
 }); 

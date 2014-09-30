@@ -1,8 +1,8 @@
 $(document).ready(function(){
 
-  $(document).on('click','.remove_fields_orders', function(event){
+  $(document).on('click','.remove_fields_stocks', function(event){
     $(this).closest('div.line3').find('input[type=hidden]').val('1');
-  $(this).closest('div.line2').hide()
+  $(this).closest('div.line3').hide()
     event.preventDefault();
   });
 
