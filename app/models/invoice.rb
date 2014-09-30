@@ -8,11 +8,14 @@ class Invoice < ActiveRecord::Base
 
   def self.total
     sum = 0
-    @invoices = Invoice.where(created_at: Date.today) 
+    
+    @invoices = Invoice.where("created_at::date = ?", Date.today) 
     @invoices.each { |a| sum += a.price_total.to_f} 
     sum
   end
 
-
+  def self.caja_diaria
+    @invoices = Invoice.where("created_at::date = ?", Date.today) 
+  end
 
 end
