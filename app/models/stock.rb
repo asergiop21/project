@@ -16,12 +16,19 @@ class Stock < ActiveRecord::Base
 
   def update_quantity
    
-    @quantity_current = Article.find(article_id)
-    @quantity_current.quantity = 0 if @quantity_current.quantity.nil?
+    @article= Article.find(article_id)
+    @article.quantity = 0 if @article.quantity.nil?
     self.quantity = 0 if self.quantity.nil?
-    self.quantity += @quantity_current.quantity
-    @due_date = due_date
-    @quantity_current.update_columns quantity: self.quantity, supplier_id: supplier_id, due_date: due_date
+    self.quantity += @article.quantity
+    percentaje = @article.percentaje.to_f 
+  
+    @price_total_current = @article.price_total.to_f 
+    
+    price_total_total = ((self.price_cost.to_f * percentaje)/100 + self.price_cost.to_f)
+
+    price_total_total = @price_total_current if price_total_total < @price_total_current
+ 
+ @article.update_columns quantity: self.quantity, supplier_id: supplier_id, due_date: due_date, price_total: price_total_total, price_cost: price_cost
    
   end
 end
