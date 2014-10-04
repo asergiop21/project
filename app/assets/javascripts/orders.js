@@ -67,7 +67,6 @@ $(document).ready(function(){
     if (discount != "")
     {
       price_x_quantity = parseFloat(price_x_quantity) - (parseFloat(price_x_quantity) * parseFloat(discount)/100)  
-      console.log(price_x_quantity);
     }
 
     $(price_subtotal).val(price_x_quantity.toFixed(2));
