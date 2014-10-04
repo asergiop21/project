@@ -53,28 +53,31 @@ $(document).ready(function(){
 
   });
 
-  $(document).on('blur keydown', '.quantity', function(event){
+  $(document).on('blur keydown', '.quantity, .discount ', function(event){
 
     var field = this.id;
     var id = field.split("_");
-   var input = $('#invoice_orders_attributes_'+ id[3]+ '_quantity').val();
-/*    if (input == "" || input == isNaN)
+    var input = $('#invoice_orders_attributes_'+ id[3]+ '_quantity').val();
+    var price_subtotal = '#invoice_orders_attributes_' + id[3] + '_price_total';
+    var price = $('#invoice_orders_attributes_' + id[3] + '_price_unit').val();
+    var discount = $('#invoice_orders_attributes_' + id[3] + '_discount').val();
+
+    var price_x_quantity = parseFloat(input) * parseFloat(price);
+    
+    if (discount != "")
     {
-      $(this).val(0);
-      input = 0;
-    }*/
-  var price_subtotal = '#invoice_orders_attributes_' + id[3] + '_price_total';
-  var price = $('#invoice_orders_attributes_' + id[3] + '_price_unit').val();
-  var price_x_quantity = parseFloat(input) * parseFloat(price);
+      price_x_quantity = parseFloat(price_x_quantity) - (parseFloat(price_x_quantity) * parseFloat(discount)/100)  
+      console.log(price_x_quantity);
+    }
 
-  $(price_subtotal).val(price_x_quantity.toFixed(2));
+    $(price_subtotal).val(price_x_quantity.toFixed(2));
 
-  var prr = $('#invoice_price_total').val();
-  if (prr == 0 || prr == isNaN)
-  {
-    prr = 0.00;
-  }
-  valor = 0;
+    var prr = $('#invoice_price_total').val();
+    if (prr == 0 || prr == isNaN)
+    {
+      prr = 0.00;
+    }
+    valor = 0;
 
   $(document).find('.price_subtotal').each(function(){
     re = $(this).val();
