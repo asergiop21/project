@@ -6,9 +6,23 @@ class Invoice < ActiveRecord::Base
   accepts_nested_attributes_for :orders, :reject_if => lambda {|a| a[:article_id].blank?}
 
 
+  scope :by_created_at, lambda {|from, to| where("created_at >= ? and created_at <= ?", from, to)}
+
+
+
+def self.find_by_filters(filters)  
+  
+  q = Invoice.all 
+  q = by_created_at((filters[:from].to_date), (filters[:to].to_date)) if filters[:from].present? or filters[:to].present?
+
+end
+
+
+
+
+
   def self.total
     sum = 0
-    
     @invoices = Invoice.where("created_at::date = ?", Date.today) 
     @invoices.each { |a| sum += a.price_total.to_f} 
     sum

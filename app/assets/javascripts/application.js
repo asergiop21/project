@@ -15,6 +15,7 @@
 //= require jquery-ui/autocomplete
 //= require twitter/bootstrap
 //= require autocomplete-rails
+//= require bootstrap-datepicker
 //= require articles
 //= require invoices
 //= require customers

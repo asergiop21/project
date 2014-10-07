@@ -15,6 +15,7 @@
  *= require twitter/bootstrap-responsive
  *= require twitter/bootstrap-theme
  *= require twitter/dashboard
+ *= require datepicker
  *= require jquery/ui-custom
  *= require_tree .
 */

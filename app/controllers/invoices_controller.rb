@@ -3,10 +3,12 @@ class InvoicesController < ApplicationController
 
   # GET /invoices
   # GET /invoices.json
+
+  
   def index
     @invoices = Invoice.caja_diaria
-    @price_total = Invoice.total
-
+    @invoices = Invoice.find_by_filters(params[:q]) if params[:q].present?
+    @price_total = 
   end
 
   # GET /invoices/1
