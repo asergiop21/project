@@ -9,6 +9,7 @@ class Article < ActiveRecord::Base
     id.each do |b|
       stock_current = Article.find(b.article_id).quantity
       quantity = b.quantity
+      stock_current = 0 if stock_current.nil?
       stock = stock_current - quantity
       Article.find_by_id(b.article_id).update_attribute(:quantity, stock)
     end
