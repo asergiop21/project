@@ -9,7 +9,9 @@
         <div class="col-md-8 customer">
           
 <h1>Listado de Remitos</h1>
-          <table class="table">
+
+  <%= will_paginate @invoices %>
+<table class="table">
   <thead>
     <tr>
       <th>#</th>
@@ -20,7 +22,8 @@
   </thead>
 
   <tbody>
-    <% @invoices.each do |invoice| %>
+
+  <% @invoices.each do |invoice| %>
       <tr>
         <td><%= invoice.id %></td>
         <td><%= l invoice.created_at, format: :submitted %></td>

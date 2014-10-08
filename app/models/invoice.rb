@@ -4,7 +4,7 @@ class Invoice < ActiveRecord::Base
   belongs_to :customer 
 
   accepts_nested_attributes_for :orders, :reject_if => lambda {|a| a[:article_id].blank?}
-  scope :by_created_at, lambda {|from, to| where("created_at::date >= ? and created_at::date <= ? ", from, to)}
+  scope :by_created_at, lambda {|from, to| where("created_at::date >= ? and created_at::date <= ? ", from, to).order("created_at asc")}
 
 def self.find_by_filters(filters)  
   

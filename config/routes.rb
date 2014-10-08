@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :categories
+
   resources :customers do 
     get 'find/:id' => 'customers#find', as: :store, :on =>  :collection
 end

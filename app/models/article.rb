@@ -1,10 +1,10 @@
 class Article < ActiveRecord::Base
-  scope :con_nombre_barcode, ->(nombre){where("articles.name ILIKE ? or barcode = ?","%#{nombre}%".downcase, nombre)}
+  scope :con_nombre_barcode, ->(nombre){where("articles.name ILIKE ? or barcode = ?","#{nombre}%".downcase, nombre)}
   scope :con_nombre,   ->(nombre){joins(:supplier).where("LOWER(articles.name) ILIKE ?", "#{nombre}%".downcase)  }
   scope :con_id, ->(id){ where('id = ?', "#{id}")}
 
   has_many :orders
-
+  belongs_to :category
   def self.quantity_order(id)
     id.each do |b|
       stock_current = Article.find(b.article_id).quantity

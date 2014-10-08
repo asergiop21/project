@@ -1,4 +1,6 @@
 class InvoicesController < ApplicationController
+
+  require 'will_paginate'
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
 
   # GET /invoices
@@ -8,7 +10,10 @@ class InvoicesController < ApplicationController
   def index
     @invoices = Invoice.caja_diaria
     @invoices = Invoice.find_by_filters(params[:q]) if params[:q].present?
+    @invoices = @invoices.paginate(page: params[:page], per_page:15)
     @price_total = Invoice.total(@invoices) 
+  
+  
   end
 
   # GET /invoices/1

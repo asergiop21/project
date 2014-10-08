@@ -14,7 +14,6 @@ autocomplete :article, :name,  :extra_data=>[:price_cost, :quantity]
 
   # GET /orders/new
   def new
-
     @order = Order.new
 
   end
@@ -27,7 +26,6 @@ autocomplete :article, :name,  :extra_data=>[:price_cost, :quantity]
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
