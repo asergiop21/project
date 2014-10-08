@@ -23,7 +23,7 @@
     <% @invoices.each do |invoice| %>
       <tr>
         <td><%= invoice.id %></td>
-        <td><%= l(invoice.created_at) %></td>
+        <td><%= l invoice.created_at, format: :submitted %></td>
         <td><%= number_to_currency(invoice.price_total) %></td>
         <td><%= link_to 'Show', invoice %></td>
         <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>

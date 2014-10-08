@@ -8,7 +8,7 @@ class InvoicesController < ApplicationController
   def index
     @invoices = Invoice.caja_diaria
     @invoices = Invoice.find_by_filters(params[:q]) if params[:q].present?
-    @price_total = 
+    @price_total = Invoice.total(@invoices) 
   end
 
   # GET /invoices/1

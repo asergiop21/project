@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+  time:
+    formats:
+      submitted: "%d/%m/%Y"
