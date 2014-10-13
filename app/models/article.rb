@@ -5,6 +5,8 @@ class Article < ActiveRecord::Base
 
   has_many :orders
   belongs_to :category
+
+
   def self.quantity_order(id)
     id.each do |b|
       stock_current = Article.find(b.article_id).quantity
@@ -15,13 +17,13 @@ class Article < ActiveRecord::Base
     end
   end
 
-def label
-  [barcode, "$  #{price_total}"].compact.join ' | '
-end
+  def label
+    [barcode, "$  #{price_total}"].compact.join ' | '
+  end
 
-def as_json options = nil
-  default_options = { only: [:id, :price_total], methods: [:label] }
-  super default_options.merge(options || {})
-end
+  def as_json options = nil
+    default_options = { only: [:id, :price_total], methods: [:label] }
+    super default_options.merge(options || {})
+  end
 
-      end
+end

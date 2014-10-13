@@ -10,18 +10,11 @@
       </div>         
      
         <div class="col-md-8 customer">
-           <%= simple_form_for '', method: 'get' do |f| %>
-
-                  <%= f.input( :q, label: 'Clientes', input_html: {
-                   class: 'form-control',
-                   data: {'autocomplete-field' => true,
-                          'autocomplete-for' => '#_customer_id',
-                          'autocomplete-url' => customers_path(format: :json)
-                } 
-                }) %>
-
-             <% end %> 
-                            <%= f.input :customer_id, as: :hidden%>
+          <%= f.input :customer_id, as: :hidden%>
+          <%= f.input :customer_name, as: :autocomplete,
+            url: autocomplete_customer_name_invoices_path,
+            input_html: {'data-id-element' => '#invoice_customer_id'}
+        %>
         </div>
       <div class="col-md-5 search">
       </div>
@@ -34,15 +27,15 @@
           <div class="col-md-2 text-center">Precio Total</div>
         </div>
         <div class="col-md-12 line2 panel-body">
-          <%= f.fields_for :orders, method: 'get' do |ph| %>
+          <%= f.fields_for :orders,   method: 'get' do |ph| %>
             <%=render 'orders', f: ph  %>
 
-
-          <div>
-            <%=link_to_add_fields 'Agregar  Producto', f , :orders %>
+        <% end %>
+          <div class="add">
+            <%= link_to_add_fields 'Agregar  Producto' , f , :orders, class:"add_fields" %>
 
           </div>
-        <% end %>
+
 
         </div> 
       </div>

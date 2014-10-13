@@ -3,10 +3,11 @@ class InvoicesController < ApplicationController
   require 'will_paginate'
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
 
+  autocomplete :customer, :name,  :extra_data=>[:name, :lastname]
+ 
   # GET /invoices
   # GET /invoices.json
 
-  
   def index
     @invoices = Invoice.caja_diaria
     @invoices = Invoice.find_by_filters(params[:q]) if params[:q].present?
@@ -82,6 +83,6 @@ class InvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
-      params.require(:invoice).permit(:customer_id, :price_total, orders_attributes: [:article_id, :quantity, :price_unit, :price_total, :discount])
+      params.require(:invoice).permit(:id, :customer_id, :price_total, orders_attributes: [:id, :article_id, :quantity, :price_unit, :price_total, :discount, :name])
     end
 end

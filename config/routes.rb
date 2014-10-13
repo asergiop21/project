@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :customers do 
     get 'find/:id' => 'customers#find', as: :store, :on =>  :collection
+
 end
   
   resources :invoice_stocks
@@ -12,11 +13,13 @@ resources :stocks
 resources :brands
 
 resources :orders do
-  get :autocomplete_article_name, :on => :collection
+  #get :autocomplete_article_name, :on => :collection
 end
-resources :invoices
+resources :invoices do
 
-resources :suppliers
+    get :autocomplete_customer_name, :on => :collection
+end
+    resources :suppliers
 
 resources :articles
 
