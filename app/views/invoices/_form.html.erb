@@ -1,8 +1,8 @@
 <%= simple_form_for @invoice, defaults: {input_html:{class: 'form-inline'}} do |f| %>
   <div class="col-md-8 customer">
-  <%= f.input :customer_id, as: :hidden %>
+    <%= f.input :customer_id, as: :hidden %>
   <%= f.input :customer_name, as: :autocomplete,
-  url: autocomplete_customer_name_invoices_path,
+  url: autocomplete_customer_name_invoices_path, 
   input_html: {'data-id-element' => '#invoice_customer_id'}
 %>
 
@@ -21,7 +21,7 @@
 
     <% end %>
       <div class="add">
-        <%= link_to_add_fields 'Agregar  Producto' , f , :orders, class:"add_fields" %>
+        <%= link_to_add_fields 'Agregar  Producto' , f , :orders, class: "add_fields" %>
       </div>
     </div> 
   </div>

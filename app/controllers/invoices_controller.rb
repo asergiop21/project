@@ -3,7 +3,7 @@ class InvoicesController < ApplicationController
   require 'will_paginate'
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
 
-  autocomplete :customer, :name,  :extra_data=>[:name, :lastname]
+  autocomplete :customer, :name, :extra_data => [:lastname],  :display_value => :display_autocomplete
  
   # GET /invoices
   # GET /invoices.json
@@ -13,8 +13,6 @@ class InvoicesController < ApplicationController
     @invoices = Invoice.find_by_filters(params[:q]) if params[:q].present?
     @invoices = @invoices.paginate(page: params[:page], per_page:15)
     @price_total = Invoice.total(@invoices) 
-  
-  
   end
 
   # GET /invoices/1
@@ -35,7 +33,6 @@ class InvoicesController < ApplicationController
   # POST /invoices
   # POST /invoices.json
   def create
-    
     @invoice = Invoice.new(invoice_params)
     @id = @invoice.orders(params[:article_id])
     @quantity = Article.quantity_order(@id)

@@ -29,7 +29,7 @@
   <%= f.fields_for :stocks, method: 'get' do |ph| %>
     <%=render 'stocks', f: ph  %>
   <div class="text-center">
-    <%=link_to_add_fields 'Agregar Item', f , :stocks %>
+    <%=link_to_add_fields 'Agregar Item', f , :stocks, class:"add_fields" %>
   </div>
 <% end %>
 
