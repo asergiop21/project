@@ -20,7 +20,7 @@ var calculo_total = function(){
 var  valor = 0;
   $(document).find('.price_subtotal').each(function(){
     precio = $(this).val();
-    if (!isNaN(precio)){
+    if (!isNaN(precio) || precio != ""){
       valor += parseFloat(precio);
     }
     });
@@ -34,8 +34,11 @@ var  valor = 0;
       $(this).closest('div.line2').find('input[type=hidden]').val('1');
       var price_remove = $(this).closest('div.line2').find('input.price_subtotal').val();
       var price_total = $('#invoice_price_total').val();
+
+      if (price_remove == isNaN || price_remove == ""){price_remove = 0;}
       if (price_total > 0)
     {
+
       var valor = parseFloat(price_total) - parseFloat(price_remove);
       valor = valor.toFixed(2);
     }

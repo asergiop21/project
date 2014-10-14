@@ -28,7 +28,10 @@
         <li><%= link_to "Remitos", new_invoice_path %></li>
         <li><%= link_to "Caja Diaria", invoices_path %></li>
         </li>
-      </ul>
+
+          <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+
+    </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
