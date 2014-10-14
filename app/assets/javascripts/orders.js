@@ -85,7 +85,7 @@ var  valor = 0;
       }).removeAttr('data-autocomplete-field');
     });
 
-/*    $(document).on('blur', '.quantity, .discount, .price_unit', function(event){
+    $(document).on('blur', '.quantity, .discount, .price_unit', function(event){
 
       var field = this.id;
       var id = field.split("_");
@@ -97,5 +97,5 @@ var  valor = 0;
       $(price_subtotal).val(calculo_subtotal(price, quantity, discount).toFixed(2) );
 
       $('#invoice_price_total').val(calculo_total().toFixed(2));
-  });*/
+  });
 });
