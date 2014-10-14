@@ -9,14 +9,11 @@ var calculo_subtotal = function(price, quantity, discount){
 }
 
 var calculo_total = function(){
-
   var precio_total = $('#invoice_price_total').val();
-
   if (precio_total == 0 || precio_total == isNaN)
   {
     precio_total = 0.00;
   }
-
 var  valor = 0;
   $(document).find('.price_subtotal').each(function(){
     precio = $(this).val();
@@ -24,9 +21,8 @@ var  valor = 0;
       valor += parseFloat(precio);
     }
     });
-      return valor;
+  return valor;
 };
-
 
   $(document).ready(function(){
 
@@ -38,7 +34,6 @@ var  valor = 0;
       if (price_remove == isNaN || price_remove == ""){price_remove = 0;}
       if (price_total > 0)
     {
-
       var valor = parseFloat(price_total) - parseFloat(price_remove);
       valor = valor.toFixed(2);
     }
@@ -48,7 +43,6 @@ var  valor = 0;
     });
 
     $('div.line2').on('keydown', '[data-autocomplete-for]', function(event){
-
       if (event.which == 13 ){
         event.preventDefault();
       }
@@ -91,7 +85,7 @@ var  valor = 0;
       }).removeAttr('data-autocomplete-field');
     });
 
-    $(document).on('blur', '.quantity, .discount, .price_unit', function(event){
+/*    $(document).on('blur', '.quantity, .discount, .price_unit', function(event){
 
       var field = this.id;
       var id = field.split("_");
@@ -103,33 +97,5 @@ var  valor = 0;
       $(price_subtotal).val(calculo_subtotal(price, quantity, discount).toFixed(2) );
 
       $('#invoice_price_total').val(calculo_total().toFixed(2));
-
-
-
-   // });
-
-//    if (event.which == 13 ){
-  //    event.preventDefault();
-   // }
-  });
-
-/*var tab =  $(document).on('keydown', 'input, select, textarea', function(e) {
-  var a = this.id 
-  var self = $(this),
-  form = self.parents('form:eq(0)'),
-  focusable,
-  next;
-
-  if (e.keyCode == 13) {
-  focusable = form.find('input,a,textarea').filter(':visible').not(".remove_fields_orders");
-  next = focusable.eq(focusable.index(this)+1);
-  if (next.length) {
-  next.focus();
-  next.select();
-  } else {
-  form.submit();
-  }
-  return false;
-  }
   });*/
 });

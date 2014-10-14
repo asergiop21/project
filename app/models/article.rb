@@ -6,7 +6,6 @@ class Article < ActiveRecord::Base
   has_many :orders
   belongs_to :category
 
-
   def self.quantity_order(id)
     id.each do |b|
       stock_current = Article.find(b.article_id).quantity

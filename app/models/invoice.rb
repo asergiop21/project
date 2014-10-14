@@ -8,8 +8,6 @@ class Invoice < ActiveRecord::Base
 
   delegate :name, to: :customer, prefix: true, allow_nil: true
   
-  
-  
     def self.find_by_filters(filters)  
   
   q = Invoice.all  
