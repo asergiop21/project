@@ -1,0 +1,5 @@
+es:
+  hello: "Hola world"
+  time:
+    formats:
+      submitted: "%d/%m/%Y"
