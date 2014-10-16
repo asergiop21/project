@@ -1,3 +1,5 @@
+
+
 <div class="container-fluid">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -43,6 +45,7 @@
       </div>
       <h1 class="page-header">Listado de Articulos</h1>
 
+<%= l Time.now %>
       <div class="table-responsive">
         <%= will_paginate @articles %>
         <% if @articles %>
