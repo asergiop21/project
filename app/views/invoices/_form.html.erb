@@ -16,9 +16,8 @@
       <div class="col-md-2 text-center">Precio Total</div>
     </div>
     <div class="col-md-12 line2 panel-body">
-      <%= f.fields_for :orders,   method: 'get' do |ph| %>
+      <%= f.fields_for :orders, method: 'get' do |ph| %>
         <%=render 'orders', f: ph  %>
-
     <% end %>
       <div class="add">
         <%= link_to_add_fields 'Agregar  Producto' , f , :orders, class: "add_fields" %>

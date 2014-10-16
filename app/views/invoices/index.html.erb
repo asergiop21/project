@@ -33,16 +33,20 @@
         <td><%= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-      <tr>
-        <td></td>
-        <td></td>
-        <td><h3><%= number_to_currency(@price_total) %></h3></td>
-      </tr>
-
-
 
   </tbody>
 </table>
+    
+      <div>
+              Subtotal de Caja: <%= number_to_currency(@price_subtotal) %>
+      </div>  
+      <div>
+        Total de Caja: <%= number_to_currency(@price_total) %>
+      </div>
+
+
+
+
 
 </div>                
 </div>                

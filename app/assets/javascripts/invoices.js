@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
     $.fn.datepicker.defaults.format = "yyyy/mm/dd";
         $.fn.datepicker.defaults.language = "es";
             var nowTemp = new Date();

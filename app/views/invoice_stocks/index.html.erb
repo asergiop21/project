@@ -1,5 +1,15 @@
-<h1>Listado Remitos </h1>
+  <div class="col-md-12"> 
+  <div class="form-group">
+    <div class="col-md-2 sidebar">
+      <%= render :partial => 'invoices/filters_bar' %>
+    
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-md-8 customer">
 
+<h2>Listado Remitos </h2>
+
+  <%= will_paginate @invoices %>
 <table class="table">
   <thead>
     <tr>
@@ -22,3 +32,11 @@
 <br>
 
 <%= link_to 'Nuevo Remito', new_invoice_stock_path %>
+
+
+
+</div>                
+</div>                
+</div>                
+</div>                
+

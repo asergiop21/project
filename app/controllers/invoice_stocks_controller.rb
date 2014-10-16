@@ -1,11 +1,15 @@
 class InvoiceStocksController < ApplicationController
+
+  require 'will_paginate'
   before_action :set_invoice_stock, only: [:show, :edit, :update, :destroy]
 
   # GET /invoice_stocks
   # GET /invoice_stocks.json
   def index
     @invoice_stocks = InvoiceStock.all
-  end
+    @invoice_stocks = @invoice_stocks.paginate(page: params[:page], per_page:10)
+  
+    end
 
   # GET /invoice_stocks/1
   # GET /invoice_stocks/1.json

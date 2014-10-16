@@ -11,8 +11,9 @@ class InvoicesController < ApplicationController
   def index
     @invoices = Invoice.caja_diaria
     @invoices = Invoice.find_by_filters(params[:q]) if params[:q].present?
-    @invoices = @invoices.paginate(page: params[:page], per_page:15)
-    @price_total = Invoice.total(@invoices) 
+    @invoices = @invoices.paginate(page: params[:page], per_page:10)
+    @price_subtotal = Invoice.subtotal(@invoices) 
+    @price_total = Invoice.total 
   end
 
   # GET /invoices/1

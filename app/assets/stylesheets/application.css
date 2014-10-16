@@ -13,7 +13,6 @@
  *= require_self
  *= require twitter/bootstrap
  *= require twitter/bootstrap-responsive
- *= require twitter/bootstrap-theme
  *= require twitter/dashboard
  *= require twitter/signin
  *= require datepicker
