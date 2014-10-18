@@ -24,11 +24,10 @@
       </div>
     </div> 
   </div>
-  <div class ="total_1 pull-right h2">
-    <h2> Total</h2>
-    <h2><%=f.input :price_total, label: false, :input_html=> {class: "form-control col-md-2"}, readonly: true, as: :string %></h2>
+  <div class =" total_1 pull-right h2">
+    <%=f.input :price_total, label: "Total", :input_html=> {class: "form-control inline"}, readonly: true, as: :string %>
   </div>
   <div class="form-actions col-md-8">
-    <%= f.submit class: 'btn btn-primary' %>
+    <%= f.submit "Guardar", class: 'btn btn-primary' %>
   </div>
 <% end %>

@@ -18,6 +18,7 @@
 //= require bootstrap-datepicker
 //= require articles
 //= require invoices
+//= require invoice_stocks
 //= require customers
 //= require orders
 //= require stocks

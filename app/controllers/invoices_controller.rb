@@ -16,7 +16,7 @@ class InvoicesController < ApplicationController
     @price_total = 0
     @total_invoices_stock = 0 
     @price_total = Invoice.total  
-   # @total_invoices_stock = InvoiceStock.total
+    @total_invoices_stock = InvoiceStock.total
     @caja = @price_total - @total_invoices_stock
   
   end
