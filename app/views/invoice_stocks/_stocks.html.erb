@@ -11,11 +11,11 @@
          <%= f.input :article_id, :input_html => {class: 'form-control'} , as: :hidden,  label: false%>
 
   </div>
-  <div class=" col-md-2">
+  <div class=" col-md-1">
     <%= f.input :quantity, label: false, as: :string, :input_html => {:class => "form-control  quantity "}  %>
   </div>
  
-  <div class=" col-md-2">
+  <div class=" col-md-1">
     <%= f.input :price_cost, label: false, as: :string, :input_html => {:class => "form-control price_cost_stock "}  %>
   </div>
 
@@ -28,8 +28,15 @@
             <%= f.input :supplier_id, label: false do %>
                <%= f.collection_select :supplier_id,  Supplier.order(:name), :id, :name, class: "form-control", label: false %>
    <% end  %>
-  
+
   </div>
+   <div class="col-md-2">
+     <%= f.input :price_total, label: false, as: :string, input_html: {class: "form-control price_subtotal"} %>
+  
+</div>
+
+
+
 
    
 

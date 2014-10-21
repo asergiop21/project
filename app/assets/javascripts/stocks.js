@@ -1,3 +1,28 @@
+var calculo_subtotal_stock = function(price, quantity){
+
+  if (price == ""){price = 0}
+  if (quantity == ""){quantity = 0}
+  var subtotal = (parseFloat(price) * parseFloat(quantity));
+  return subtotal;
+}
+
+var calculo_total_stock = function(){
+  var precio_total = $('#stock_price_total').val();
+  if (precio_total == 0 || precio_total == isNaN)
+  {
+    precio_total = 0.00;
+  }
+  var  valor = 0;
+  $(document).find('.price_subtotal').each(function(){
+    precio = $(this).val();
+    if (!isNaN(precio) &&  precio != ""){
+      valor += parseFloat(precio);
+    }
+  });
+  console.log(valor);
+  return valor;
+};
+
 $(document).ready(function(){
 
   $(document).on('click','.remove_fields_stocks', function(event){
@@ -36,9 +61,29 @@ $(document).ready(function(){
         var id = field.split("_");
         var field_article_id = '#invoice_stock_stocks_attributes_' + id[4] + '_article_id';
 
+
         $(field_article_id).val(ui.item.item.id);
+      
+      
       }
     }).removeAttr('data-autocomplete-field');
   });
-  });
+
+  $(document).on('blur', '.price_cost_stock', function(){
+  
+    var field = this.id;
+    var id = field.split("_");
+        var field_quantity = '#invoice_stock_stocks_attributes_' + id[4] + '_quantity';
+        var field_price_cost = '#invoice_stock_stocks_attributes_' + id[4] + '_price_cost';
+        var field_price_subtotal = '#invoice_stock_stocks_attributes_' + id[4] + '_price_total';
+
+        $(field_price_subtotal).val(calculo_subtotal_stock($(field_price_cost).val(), $(field_quantity).val()).toFixed(2) );
+      
+    $('#invoice_stock_price_total').val(calculo_total_stock().toFixed(2));
+  
+  
+  }); 
+
+
+});
 

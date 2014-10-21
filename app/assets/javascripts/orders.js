@@ -3,7 +3,7 @@ var calculo_subtotal = function(price, quantity, discount){
   if (price == ""){price = 0}
   if (quantity == ""){quantity = 0}
   if (discount == ""){discount = 0}
-  subtotal = (parseFloat(price) - (parseFloat(price) * parseFloat(discount)) /100) * parseFloat(quantity);
+ var subtotal = (parseFloat(price) - (parseFloat(price) * parseFloat(discount)) /100) * parseFloat(quantity);
   return subtotal;
 }
 
