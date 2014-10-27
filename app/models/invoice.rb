@@ -6,10 +6,10 @@ class Invoice < ActiveRecord::Base
   accepts_nested_attributes_for :orders, :reject_if => lambda {|a| a[:article_id].blank?}
 
   scope :by_created_at, lambda {|from, to| where("created_at::date >= ? and created_at::date <= ? ", from, to).order("created_at asc")}
-
   delegate :name, :lastname,  to: :customer, prefix: true, allow_nil: true
+  after_create :create_accounting_record
   
-    def self.find_by_filters(filters)  
+  def self.find_by_filters(filters)  
   
   q = Invoice.all  
   q = by_created_at((filters[:from].to_date), (filters[:to].to_date)) if filters[:from].present? or filters[:to].present?
@@ -31,6 +31,9 @@ end
     @invoices = Invoice.where("created_at::date = ?", Date.today) 
   end
 
+  def create_accounting_record
+      
+      @record = AccountingRecord.create(detail: "Invoice #{id} " , credit: price_total)
 
-
+  end
 end
