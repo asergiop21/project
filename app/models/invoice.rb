@@ -33,7 +33,7 @@ end
 
   def create_accounting_record
       
-      @record = AccountingRecord.create(detail: "Invoice #{id} " , credit: price_total)
+      @record = AccountingRecord.create(detail: "Remito  #{id} " , credit: price_total)
 
   end
 end

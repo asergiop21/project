@@ -1,7 +1,7 @@
 <%= simple_form_for @invoice, defaults: {input_html:{class: 'form-inline'}} do |f| %>
   <div class="col-md-8 customer">
     <%= f.input :customer_id, as: :hidden %>
-  <%= f.input :customer_name, as: :autocomplete,
+  <%= f.input :customer_name, as: :autocomplete, label: "Cliente:",
   url: autocomplete_customer_name_invoices_path, 
   input_html: {'data-id-element' => '#invoice_customer_id'}
 %>

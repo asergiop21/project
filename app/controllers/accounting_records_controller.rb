@@ -7,11 +7,10 @@ class AccountingRecordsController < ApplicationController
   # GET /accounting_records.json
   def index
     @accounting_records = AccountingRecord.journal
-   # @accounting_records = AccountingRecord.find_by_filters(params[:q] if params[:q].present?)
-
+    @accounting_records = AccountingRecord.filters(params[:q]) if params[:q].present?
     @credit = AccountingRecord.credit(@accounting_records)
     @debit = AccountingRecord.debit(@accounting_records)
-    @caja_total = @debit - @credit
+    @caja_total = @credit - @debit
 
     @accounting_records =  @accounting_records.paginate(page: params[:page], per_page:10)
 
