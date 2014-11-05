@@ -4,7 +4,9 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+
+    @categories = Category.total
+    @categories = Category.total_con_fecha(params[:q]) if params[:q].present?
   end
 
   # GET /categories/1
