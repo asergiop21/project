@@ -25,8 +25,8 @@
   </div>
 
   <div class="col-md-2">
-            <%= f.input :supplier_id, label: false do %>
-               <%= f.collection_select :supplier_id,  Supplier.order(:name), :id, :name, class: "form-control", label: false %>
+            <%= f.input :category_id, label: false do %>
+               <%= f.collection_select :category_id,  Category.order(:name), :id, :name, class: "form-control", label: false %>
    <% end  %>
 
   </div>

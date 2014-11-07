@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+
+
   resources :accounting_records
 
   resources :categories
   resources :customers do 
     get 'find/:id' => 'customers#find', as: :store, :on =>  :collection
+    resources :current_accounts
   end
 
   resources :invoice_stocks

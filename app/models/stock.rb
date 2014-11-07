@@ -10,9 +10,7 @@ class Stock < ActiveRecord::Base
 
   def name
 #    name = Article.where(id: article_id).pluck(:barcode, :name) if !article_id.nil? 
-
   end
-
 
   def update_quantity
    
@@ -21,14 +19,7 @@ class Stock < ActiveRecord::Base
     self.quantity = 0 if self.quantity.nil?
     self.quantity += @article.quantity
     percentaje = @article.percentaje.to_f 
-  
-    @price_total_current = @article.price_total.to_f 
-    
     price_total_total = ((self.price_cost.to_f * percentaje)/100 + self.price_cost.to_f)
-
-    price_total_total = @price_total_current if price_total_total < @price_total_current
- 
- @article.update_columns quantity: self.quantity, supplier_id: supplier_id, due_date: due_date, price_total: price_total_total, price_cost: price_cost
-   
+    @article.update_columns quantity: self.quantity, category_id: category_id, due_date: due_date, price_total: price_total_total, price_cost: price_cost
   end
 end

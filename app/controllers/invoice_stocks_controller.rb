@@ -74,6 +74,6 @@ class InvoiceStocksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_stock_params
-      params.require(:invoice_stock).permit(:name, :price_total, stocks_attributes:[:id, :article_id, :price_cost, :quantity, :supplier_id, :due_date] )
+      params.require(:invoice_stock).permit(:name, :price_total, stocks_attributes:[:id, :article_id, :price_cost, :quantity, :supplier_id, :due_date, :category_id] )
     end
 end

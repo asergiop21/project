@@ -31,9 +31,10 @@
         <td><%= customer.name %></td>
         <td><%= customer.lastname %></td>
         <td><%= link_to 'Historial', store_customers_path(customer) %></td>
-        <td><%= link_to 'Show', customer %></td>
-        <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Editar', edit_customer_path(customer) %></td>
+        <td><%= link_to 'Eliminar', customer, method: :delete, data: { confirm: 'Estás seguro?' } %></td>
+        <td><%= link_to 'Pago', new_customer_current_account_path(customer) %></td>
+
       </tr>
     <% end %>
   </tbody>

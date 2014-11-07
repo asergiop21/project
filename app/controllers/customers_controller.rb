@@ -1,8 +1,16 @@
 class CustomersController < ApplicationController
+  
+  require 'will_paginate'
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
+
   def find
-    @customers = Invoice.where(customer_id: params[:id]) 
+    @customers = CurrentAccount.where(customer_id: params[:id])
+    @subtotal = CurrentAccount.total(@customers)
+
+   @total = @subtotal[:credit] - @subtotal[:debit]
+    
+    @customers = @customers.paginate(page: params[:page], per_page:20)
   end
 
 # GET /customers
