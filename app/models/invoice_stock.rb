@@ -10,6 +10,9 @@ class InvoiceStock < ActiveRecord::Base
     @invoice_stock = InvoiceStock.where("created_at::date = ?", Date.today).sum(:price_total)
   end
 
+  def to_s
+    name
+ end
 
 
 end

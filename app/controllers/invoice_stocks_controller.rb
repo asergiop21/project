@@ -6,7 +6,7 @@ class InvoiceStocksController < ApplicationController
   # GET /invoice_stocks
   # GET /invoice_stocks.json
   def index
-    @invoice_stocks = InvoiceStock.all
+    @invoice_stocks = InvoiceStock.order(created_at: :desc)
     @invoice_stocks = @invoice_stocks.paginate(page: params[:page], per_page:10)
   
     end
@@ -47,7 +47,7 @@ class InvoiceStocksController < ApplicationController
   def update
     respond_to do |format|
       if @invoice_stock.update(invoice_stock_params)
-        format.html { redirect_to @invoice_stock, notice: 'Invoice stock was successfully updated.' }
+        format.html { redirect_to invoice_stocks_path, notice: 'Invoice stock was successfully updated.' }
         format.json { render :show, status: :ok, location: @invoice_stock }
       else
         format.html { render :edit }
@@ -74,6 +74,6 @@ class InvoiceStocksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_stock_params
-      params.require(:invoice_stock).permit(:name, :price_total, stocks_attributes:[:id, :article_id, :price_cost, :quantity, :supplier_id, :due_date, :category_id] )
+      params.require(:invoice_stock).permit(:name, :price_total, stocks_attributes:[:id, :article_id, :price_cost, :quantity, :supplier_id, :due_date, :category_id, :price_total] )
     end
 end

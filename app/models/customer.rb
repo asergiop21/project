@@ -5,6 +5,9 @@ class Customer < ActiveRecord::Base
  scope :search, ->(data){where("name ilike ? or lastname ilike ?", "%#{data}%", "%#{data}%")}
 
 
+  validates :name, :lastname, presence: true
+
+
  def display_autocomplete
    self.name + ", " +  self.lastname
  end

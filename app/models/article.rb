@@ -5,6 +5,7 @@ class Article < ActiveRecord::Base
 
   has_many :orders
   belongs_to :category
+  has_many :stocks
 
   def self.quantity_order(id)
     id.each do |b|
@@ -24,5 +25,10 @@ class Article < ActiveRecord::Base
     default_options = { only: [:id, :price_total], methods: [:label] }
     super default_options.merge(options || {})
   end
+
+def to_s
+  name
+  
+end
 
 end

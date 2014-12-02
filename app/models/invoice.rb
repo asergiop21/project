@@ -17,7 +17,6 @@ class Invoice < ActiveRecord::Base
   q
 end
 
-
   def self.total
     @invoices = Invoice.where("created_at::date = ?", Date.today).sum(:price_total)
   end
@@ -40,7 +39,7 @@ end
 
   def create_current_account
       
-      @record_account = CurrentAccount.create(detail: "Remito  #{id} " , credit: price_total, customer_id: customer_id )
+      @record_account = CurrentAccount.create(detail: "Remito  #{id} " , credit: price_total, customer_id: customer_id, invoice_id: id )
 
   end
 

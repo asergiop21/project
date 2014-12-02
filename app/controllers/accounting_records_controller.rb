@@ -14,6 +14,8 @@ class AccountingRecordsController < ApplicationController
 
     @accounting_records =  @accounting_records.paginate(page: params[:page], per_page:10)
 
+    @earnings = AccountingRecord.earnings
+
   
   end
 

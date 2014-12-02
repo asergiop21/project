@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   require 'will_paginate'
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /articles
   # GET /articles.json
   def index

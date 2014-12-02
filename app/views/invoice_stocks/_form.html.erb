@@ -1,19 +1,9 @@
 <%= simple_form_for(@invoice_stock) do |f| %>
   <% if @invoice_stock.errors.any? %>
-  <div id="error_explanation">
-  <h2><%= pluralize(@invoice_stock.errors.count, "error") %> prohibited this invoice_stock from being saved:</h2>
-
-  <ul>
-    <% @invoice_stock.errors.full_messages.each do |message| %>
       <li><%= message %></li>
   <% end %>
-  </ul>
-</div>
-  <% end %>
 
-<div class="col-md-4">
   <%= f.input :name, label: 'Nombre', input_html: {class: 'form-control'} %> 
-</div>
 <br>
 <br>
       <div class="row panel panel-default">
@@ -29,11 +19,11 @@
 <div class="col-md-12 line3 panel-body">
   <%= f.fields_for :stocks, method: 'get' do |ph| %>
     <%=render 'stocks', f: ph  %>
-  <div class="text-center">
+    
+<% end %>
+    <div class="text-center">
     <%=link_to_add_fields 'Agregar Item', f , :stocks, class:"add_fields" %>
   </div>
-<% end %>
-
     <div>
       <%= f.input :price_total, label: "Precio Total" , as: :string %>
     </div>

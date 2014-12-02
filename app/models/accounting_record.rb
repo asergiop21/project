@@ -30,4 +30,11 @@ class AccountingRecord < ActiveRecord::Base
     @invoices = AccountingRecord.where("created_at::date = ?", Date.today).sum(:debit)
   end
 
+  def self.earnings
+    
+  end
+
+
+
+
 end

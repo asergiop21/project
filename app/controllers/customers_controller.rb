@@ -3,7 +3,7 @@ class CustomersController < ApplicationController
   require 'will_paginate'
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
-
+load_and_authorize_resource 
   def find
     @customers = CurrentAccount.where(customer_id: params[:id])
     @subtotal = CurrentAccount.total(@customers)
