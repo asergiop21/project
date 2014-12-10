@@ -29,7 +29,7 @@
 
 <% @customers.each do |account| %>
   <tr>
-    <td><%= account.created_at.strftime("%d/%m/%Y") %></td>
+    <td><%= l account.created_at, format: :long %></td>
     <td><%= link_to account.detail, edit_invoice_path(account.invoice_id) if !account.invoice_id.nil?%></td>
     <td><%= account.credit %></td>
     <td><%= account.debit %></td>

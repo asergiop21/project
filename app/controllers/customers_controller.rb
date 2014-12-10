@@ -5,7 +5,7 @@ class CustomersController < ApplicationController
 
 load_and_authorize_resource 
   def find
-    @customers = CurrentAccount.where(customer_id: params[:id])
+    @customers = CurrentAccount.where(customer_id: params[:id]).order(created_at: :desc)
     @subtotal = CurrentAccount.total(@customers)
 
    @total = @subtotal[:credit] - @subtotal[:debit]

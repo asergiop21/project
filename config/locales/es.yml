@@ -1,9 +1,29 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
 es:
- time:
-   am: am
-   formats:
-     default: ! '%a, %d de %b de %Y a las %H:%M:%S %Z'
-     long: ! '%A, %d de %B de %Y a las %I:%M %p'
-     short: ! '%d de %b a las %H:%M hrs'
-     pm: pm
-     submitted: "%d/%m/%Y"
+  hello: "Hola world"
+  time:
+    formats:
+      submitted: "%d/%m/%Y"
+      default: ! '%A, %d de %B de %Y %H:%M:%S %z'
+      long: ! '%d/%m/%Y - %H:%M'
+      short: ! '%d de %b %H:%M'

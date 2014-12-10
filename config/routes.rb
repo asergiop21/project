@@ -1,31 +1,43 @@
 Rails.application.routes.draw do
 
 
-  resources :accounting_records
+  #scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
 
-  resources :categories
-  resources :customers do 
-    get 'find/:id' => 'customers#find', as: :store, :on =>  :collection
-    resources :current_accounts
-  end
 
-  resources :invoice_stocks
-  resources :stocks
-  resources :brands
-  resources :orders do
-    #get :autocomplete_article_name, :on => :collection
-  end
-  resources :invoices do
-    get :autocomplete_customer_name, :on => :collection
-  end
-  resources :suppliers
-  resources :articles
-  devise_for :users
+  scope ':locale', locale: /#{I18n.available_locales.join("|")}/ do
+
+    #  scope ":locale", locale: /es|en/ do
+    resources :accounting_records
+
+    resources :categories
+    resources :customers do 
+      get 'find/:id' => 'customers#find', as: :store, :on =>  :collection
+      resources :current_accounts
+    end
+
+    resources :invoice_stocks
+    resources :stocks
+    resources :brands
+    resources :orders do
+      #get :autocomplete_article_name, :on => :collection
+    end
+    resources :invoices do
+      get :autocomplete_customer_name, :on => :collection
+    end
+    resources :suppliers
+    resources :articles
+
+    resources :users
+    devise_for :users
+
+  end 
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  #end
 
   authenticated :user do 
     root :to => 'articles#index'
@@ -35,6 +47,7 @@ Rails.application.routes.draw do
       get "/" => "devise/sessions#new"
     end
   end
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
