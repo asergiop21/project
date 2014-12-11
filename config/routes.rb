@@ -27,8 +27,11 @@ Rails.application.routes.draw do
     resources :suppliers
     resources :articles
 
-    resources :users
     devise_for :users
+    resources :users
+
+
+
 
   end 
 

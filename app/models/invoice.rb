@@ -1,6 +1,6 @@
 class Invoice < ActiveRecord::Base
 
-  has_many :orders 
+  has_many :orders, dependent: :destroy 
   belongs_to :customer 
   
   accepts_nested_attributes_for :orders, :reject_if => lambda {|a| a[:article_id].blank?}

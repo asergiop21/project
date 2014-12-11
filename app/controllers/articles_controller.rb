@@ -1,11 +1,11 @@
 class ArticlesController < ApplicationController
   require 'will_paginate'
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
   # GET /articles
   # GET /articles.json
   def index
-    
+
     @articles = Article.order(:name)
     @articles = Article.con_nombre_barcode(params[:q]) if params[:q].present?
     @articles = Article.con_id(params[:article_id]) if params[:article_id].present?
@@ -47,7 +47,7 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
+        format.html { redirect_to articles_path, notice: 'Article was successfully updated.' }
         format.json { render :show, status: :ok, location: @article }
       else
         format.html { render :edit }
@@ -67,13 +67,13 @@ class ArticlesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_article
+    @article = Article.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def article_params
-      params.require(:article).permit(:name, :price_cost, :percentaje, :price_total, :quantity, :barcode, :supplier_id, :category_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def article_params
+    params.require(:article).permit(:name, :price_cost, :percentaje, :price_total, :quantity, :barcode, :supplier_id, :category_id)
+  end
 end
