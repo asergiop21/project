@@ -33,8 +33,16 @@ class AccountingRecord < ActiveRecord::Base
   def self.earnings
     sum = 0 
     @earnings = Article.joins(:orders).select('orders.price_total AS price_total', 'articles.price_cost AS price_cost', 'orders.quantity AS quantity').where("orders.created_at::date = ?", Date.today)
-    @earnings.each {|a| sum += a.price_total - (a.price_cost * a.quantity)}
-    sum
+
+    @earnings.each do |a| 
+   
+      a.quantity = 0 if a.quantity.nil?
+      a.price_cost = 0 if a.price_cost.nil?
+      a.price_total = 0 if a.price_total.nil?
+      sum += a.price_total - (a.price_cost * a.quantity)
+    end
+      sum
+
 
   end
 end
