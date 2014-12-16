@@ -4,8 +4,9 @@ class Article < ActiveRecord::Base
   scope :con_id, ->(id){ where('id = ?', "#{id}")}
 
   has_many :orders
-  belongs_to :category
   has_many :stocks
+  belongs_to :category
+  belongs_to :supplier
 
   def self.quantity_order(id)
     id.each do |b|

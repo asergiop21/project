@@ -1,9 +1,9 @@
 class AccountingRecord < ActiveRecord::Base
 
-  scope :by_created_at, lambda {|from, to| where("created_at::date >= ? and created_at::date <= ? ", from, to).order("created_at asc")}
+  scope :by_created_at, lambda {|from, to| where("created_at::date >= ? and created_at::date <= ? ", from, to).order("created_at desc")}
 
   def self.journal
-    @accounting_record = AccountingRecord.where("created_at::date = ?", Date.today) 
+    @accounting_record = AccountingRecord.where("created_at::date = ?", Date.today).order(created_at: :desc) 
 
   end
 
@@ -31,10 +31,10 @@ class AccountingRecord < ActiveRecord::Base
   end
 
   def self.earnings
-    
+    sum = 0 
+    @earnings = Article.joins(:orders).select('orders.price_total AS price_total', 'articles.price_cost AS price_cost', 'orders.quantity AS quantity').where("orders.created_at::date = ?", Date.today)
+    @earnings.each {|a| sum += a.price_total - (a.price_cost * a.quantity)}
+    sum
+
   end
-
-
-
-
 end

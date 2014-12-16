@@ -34,3 +34,8 @@ es:
       customer:
         name: Nombre
         lastname: Apellido
+      article:
+        name: Nombre
+        supplier: Proveedor
+        price_total: Precio Publico
+        quantity: Stock

@@ -11,7 +11,6 @@ class AccountingRecordsController < ApplicationController
     @credit = AccountingRecord.credit(@accounting_records)
     @debit = AccountingRecord.debit(@accounting_records)
     @caja_total = @credit - @debit
-
     @accounting_records =  @accounting_records.paginate(page: params[:page], per_page:10)
 
     @earnings = AccountingRecord.earnings

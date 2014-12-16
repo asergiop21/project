@@ -21,7 +21,7 @@ $(document).ready(function(){
          }
       }).removeAttr('data-autocomplete-field'); });
 
-   $('#article_percentaje').on('blur', function(){
+   $('#article_percentaje, #article_price_cost ').on('blur', function(){
       var price = $('#article_price_cost').val();
       var percentaje = $('#article_percentaje').val();
       var price_total = ((parseFloat(price) * parseFloat(percentaje))/100) + parseFloat(price);

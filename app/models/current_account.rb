@@ -2,7 +2,7 @@ class CurrentAccount < ActiveRecord::Base
 
   belongs_to :customer
   
-  after_create :create_accounting_record
+#  after_create :create_accounting_record
 
 
 
@@ -19,7 +19,6 @@ class CurrentAccount < ActiveRecord::Base
 
 
   def create_accounting_record
-      
       @record = AccountingRecord.create(detail: detail , debit: debit)
   end
 

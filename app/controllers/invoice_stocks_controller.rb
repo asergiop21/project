@@ -33,7 +33,7 @@ class InvoiceStocksController < ApplicationController
     #@quantity = Stock.update_quantity(invoice_stock_params[:stocks_attributes])
     respond_to do |format|
       if @invoice_stock.save
-        format.html { redirect_to @invoice_stock, notice: 'Invoice stock was successfully created.' }
+        format.html { redirect_to invoice_stocks_path, notice: 'Invoice stock was successfully created.' }
         format.json { render :show, status: :created, location: @invoice_stock }
       else
         format.html { render :new }
