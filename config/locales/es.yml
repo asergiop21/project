@@ -28,14 +28,29 @@ es:
       long: ! '%d/%m/%Y - %H:%M'
       short: ! '%d de %b %H:%M'
   activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email: 
+              invalid: "Email Invalido"
+            password: 
+              blank: "No puede estar en Blanco"
+              too_short: "No puede ser menor a %{count} caracteres "
     models:
-      customer: Clientes
+      customer: "Clientes"
     attributes:
       customer:
-        name: Nombre
-        lastname: Apellido
+        name: "Nombre"
+        lastname: "Apellido"
       article:
-        name: Nombre
-        supplier: Proveedor
-        price_total: Precio Publico
-        quantity: Stock
+        name: "Nombre"
+        supplier: "Proveedor"
+        price_total: "Precio Publico"
+        quantity: "Stock"
+      user:
+        name: "Nombre"
+        email: "Correo Electronico"
+        password: "Contraseña"
+        password_confirmation: "Confirmar Contraseña"
+        role: "Tipo de Usuario"
