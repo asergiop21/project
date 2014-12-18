@@ -23,7 +23,7 @@
   <tbody>
     <% @accounting_records.each do |accounting_record| %>
       <tr>
-        <td><%= accounting_record.detail %></td>
+        <td><%= link_to accounting_record.detail, edit_invoice_path(accounting_record.invoice_id)  %>  </td>
         <td><%= number_to_currency(accounting_record.credit) %></td>
         <td><%= number_to_currency(accounting_record.debit) %></td>
         <td><%= link_to 'Editar', edit_accounting_record_path(accounting_record) %></td>
@@ -32,8 +32,8 @@
     <% end %>
       <tr>
         <td></td>
-        <td><%= number_to_currency(@debit) %></td>
         <td><%= number_to_currency(@credit) %></td>
+        <td><%= number_to_currency(@debit) %></td>
       </tr>
   </tbody>
 </table>

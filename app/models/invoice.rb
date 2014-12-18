@@ -32,7 +32,7 @@ class Invoice < ActiveRecord::Base
   end
 
   def create_accounting_record
-    @record = AccountingRecord.create(detail: "Remito  #{id} " , credit: price_total)
+    @record = AccountingRecord.create(detail: "Remito  #{id} " , credit: price_total, invoice_id: id)
   end
 
   def create_current_account

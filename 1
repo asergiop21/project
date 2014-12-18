@@ -30,16 +30,16 @@ class AccountingRecord < ActiveRecord::Base
     @invoices = AccountingRecord.where("created_at::date = ?", Date.today).sum(:debit)
   end
 
-  def self.earnings(date=nil)
+  def self.earnings(from=Date.today , to=Date.today )
     sum = 0 
   
-    
-    @from = Date.today 
-    @to = Date.today 
-    @from = date[:from] if !date.nil?
-    @to = date[:to] if !date.nil?
+    @from = from
+    @to = to
 
-    @earnings = Article.joins(:orders).select('orders.price_total AS price_total', 'articles.price_cost AS price_cost', 'orders.quantity AS quantity').where("orders.created_at::date >= ? and orders.created_at::date <= ?", @from, @to)
+    pry
+
+
+    @earnings = Article.joins(:orders).select('orders.price_total AS price_total', 'articles.price_cost AS price_cost', 'orders.quantity AS quantity').where("orders.created_at::date >= ? and orders.created_at::date <= ?", from, to)
 
     @earnings.each do |a| 
       a.quantity = 0 if a.quantity.nil?
