@@ -26,10 +26,11 @@ var calculo_total = function(){
 $(document).ready(function(){
 
   $(document).on('click','.remove_fields_orders', function(event){
-    $(this).closest('div.line2').find('input[type=hidden]').val('1');
-    var price_remove = $(this).closest('div.line2').find('input.price_subtotal').val();
+    $(this).closest('tr.line2').find('input[type=hidden]').val('1');
+    var price_remove = $(this).closest('tr.line2').find('input.price_subtotal').val();
     var price_total = $('#invoice_price_total').val();
 
+    if (price_total == isNaN || price_total == ""){price_total = 0;}
     if (price_remove == isNaN || price_remove == ""){price_remove = 0;}
     if (price_total > 0)
   {
@@ -37,11 +38,11 @@ $(document).ready(function(){
     valor = valor.toFixed(2);
   }
   price_total = $('#invoice_price_total').val(valor);
-  $(this).closest('div.line2').remove()
+  $(this).closest('tr.line2').remove()
     event.preventDefault();
   });
 
-  $('div.line2').on('keydown', '[data-autocomplete-for]', function(event){
+  $('table.line1').on('keydown', '[data-autocomplete-for]', function(event){
     if (event.which == 13 ){
       event.preventDefault();
     }
