@@ -1,10 +1,9 @@
 class AccountingRecord < ActiveRecord::Base
 
-  scope :by_created_at, lambda {|from, to| where("created_at::date >= ? and created_at::date <= ? ", from, to).order("created_at desc")}
+  scope :by_created_at, lambda {|from, to| where("created_at::date >= ? and created_at::date <= ? ", from, to).order(debit: :desc, created_at: :desc)}
 
   def self.journal
-    @accounting_record = AccountingRecord.where("created_at::date = ?", Date.today).order(created_at: :desc) 
-
+    @accounting_record = AccountingRecord.where("created_at::date = ?", Date.today).order(debit:  :asc,  created_at: :desc) 
   end
 
   def self.filters(filters)  
@@ -32,7 +31,6 @@ class AccountingRecord < ActiveRecord::Base
 
   def self.earnings(date=nil)
     sum = 0 
-  
     
     @from = Date.today 
     @to = Date.today 

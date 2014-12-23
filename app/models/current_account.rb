@@ -2,9 +2,6 @@ class CurrentAccount < ActiveRecord::Base
 
   belongs_to :customer
   
-#  after_create :create_accounting_record
-
-
 
   def self.total(current_account)
     credit = 0
@@ -17,9 +14,8 @@ class CurrentAccount < ActiveRecord::Base
         @result = {credit: credit, debit: debit}
   end
 
-
-  def create_accounting_record
-      @record = AccountingRecord.create(detail: detail , debit: debit)
+  def self.create_accounting_record(detail, debit)
+    @record = AccountingRecord.create(detail: detail , debit: debit )
   end
 
 

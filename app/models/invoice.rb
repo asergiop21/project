@@ -7,8 +7,9 @@ class Invoice < ActiveRecord::Base
 
   scope :by_created_at, lambda {|from, to| where("created_at::date >= ? and created_at::date <= ? ", from, to).order("created_at asc")}
   delegate :name, :lastname,  to: :customer, prefix: true, allow_nil: true
-  after_create :create_accounting_record
-  after_create :create_current_account
+
+  after_create :create_accounting_record_2
+#  after_create :create_current_account_2
 
   def self.find_by_filters(filters)  
 
@@ -31,12 +32,17 @@ class Invoice < ActiveRecord::Base
     @invoices = Invoice.where("created_at::date = ?", Date.today) 
   end
 
-  def create_accounting_record
+private
+
+  def create_accounting_record_2
+
     @record = AccountingRecord.create(detail: "Remito  #{id} " , credit: price_total, invoice_id: id)
+
   end
 
-  def create_current_account
 
+  def create_current_account_2
+    
     @record_account = CurrentAccount.create(detail: "Remito  #{id} " , credit: price_total, customer_id: customer_id, invoice_id: id )
 
   end

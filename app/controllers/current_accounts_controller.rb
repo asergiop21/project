@@ -30,6 +30,7 @@ class CurrentAccountsController < ApplicationController
 
     respond_to do |format|
       if @current_account.save
+          @accounting_record = CurrentAccount.create_accounting_record(@current_account.detail, @current_account.debit) 
         format.html { redirect_to store_customers_path(@customer), notice: 'Current account was successfully created.' }
         format.json { render :show, status: :created, location: @current_account }
       else
