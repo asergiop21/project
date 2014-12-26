@@ -33,14 +33,11 @@
         <td><%= link_to 'Editar', edit_customer_path(customer) %></td>
         <td><%= link_to 'Eliminar', customer, method: :delete, data: { confirm: 'Estás seguro?' } %></td>
         <td><%= link_to 'Pago', new_customer_current_account_path(customer) %></td>
-
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
-
 <%= link_to 'Nuevo Cliente', new_customer_path %>
 </div>
 </div>

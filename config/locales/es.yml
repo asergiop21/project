@@ -54,3 +54,7 @@ es:
         password: "Contraseña"
         password_confirmation: "Confirmar Contraseña"
         role: "Tipo de Usuario"
+  helpers:
+    create: "Crear %{model}"
+    submit: "Guardar111 %{model}"
+    update: "Actualizar %{model}"
