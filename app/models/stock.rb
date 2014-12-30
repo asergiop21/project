@@ -15,8 +15,6 @@ class Stock < ActiveRecord::Base
     name
   end
 
-
-
   def update_quantity
    
     @article= Article.find(article_id)

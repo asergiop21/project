@@ -9,7 +9,7 @@ class Invoice < ActiveRecord::Base
   delegate :name, :lastname,  to: :customer, prefix: true, allow_nil: true
 
   after_create :create_accounting_record_2
-#  after_create :create_current_account_2
+  after_create :create_current_account_2
 
   def self.find_by_filters(filters)  
 
@@ -42,7 +42,6 @@ private
 
 
   def create_current_account_2
-    
     @record_account = CurrentAccount.create(detail: "Remito  #{id} " , credit: price_total, customer_id: customer_id, invoice_id: id )
 
   end

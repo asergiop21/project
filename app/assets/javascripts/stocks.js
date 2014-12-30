@@ -34,7 +34,7 @@ $(document).ready(function(){
   $('div.line3').on('keydown', '[data-autocomplete-for]', function(event){
 
     if (event.which == 13 ){
-      console.log(event.which);
+      //console.log(event.which);
       event.preventDefault();
     }
 
@@ -60,10 +60,10 @@ $(document).ready(function(){
         var field = this.id;
         var id = field.split("_");
         var field_article_id = '#invoice_stock_stocks_attributes_' + id[4] + '_article_id';
-
-
+        var category_id = '#invoice_stock_stocks_attributes_' + id[4] + '_category_id';
+        var option_category = ui.item.item.category_id;
+        $(category_id).val(option_category);
         $(field_article_id).val(ui.item.item.id);
-      
       
       }
     }).removeAttr('data-autocomplete-field');

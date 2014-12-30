@@ -28,4 +28,11 @@ $(document).ready(function(){
       $('#article_price_total').val(price_total.toFixed(2));
       $(this).val(parseFloat($(this).val()).toFixed(2));
    });
+
+  $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+   $.fn.datepicker.defaults.language = "es";
+
+  $('#article_due_date').datepicker();
+
+
 });
