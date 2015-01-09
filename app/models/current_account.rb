@@ -15,7 +15,7 @@ class CurrentAccount < ActiveRecord::Base
   end
 
   def self.create_accounting_record(detail, debit)
-    @record = AccountingRecord.create(detail: detail , credit: debit )
+    @record = AccountingRecord.create(detail: detail , debit: debit )
   end
 
 

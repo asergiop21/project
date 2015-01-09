@@ -2,6 +2,7 @@ class Invoice < ActiveRecord::Base
 
   has_many :orders, dependent: :destroy 
   belongs_to :customer 
+  belongs_to :user
 
   accepts_nested_attributes_for :orders, :reject_if => lambda {|a| a[:article_id].blank?}
 
@@ -32,14 +33,15 @@ class Invoice < ActiveRecord::Base
     @invoices = Invoice.where("created_at::date = ?", Date.today) 
   end
 
-private
+
 
   def create_accounting_record_2
-
-    @record = AccountingRecord.create(detail: "Remito  #{id} " , credit: price_total, invoice_id: id)
-
+    @a = User.current_user.id
+    pry
+    @record = AccountingRecord.create(detail: "Remito  #{id} " , credit: price_total, invoice_id: id, user_id: current_user.id)
   end
 
+private
 
   def create_current_account_2
     @record_account = CurrentAccount.create(detail: "Remito  #{id} " , credit: price_total, customer_id: customer_id, invoice_id: id )

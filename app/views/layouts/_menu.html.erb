@@ -26,6 +26,7 @@
           <li><%= link_to "Remitos", invoices_path %></li>
           <li><%= link_to "Categorias", categories_path %></li>
           <li><%= link_to "Usuarios", users_path %></li>
+          <li><%= link_to "Vencimientos", due_date_articles_path %></li>
         </ul>
       <% end %>
         <li><%= link_to "Remitos", new_invoice_path %></li>
@@ -33,7 +34,7 @@
      <%  if current_user.role == 'admin' %>
         <li><%= link_to "Caja Diaria", accounting_records_path %></li>
       <% end %>
-        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+        <li><%= link_to "Cerrar Session", destroy_user_session_path, method: :delete %></li>
 
       </ul>
     </div><!-- /.navbar-collapse -->

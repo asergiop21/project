@@ -25,8 +25,9 @@ Rails.application.routes.draw do
       get :autocomplete_customer_name, :on => :collection
     end
     resources :suppliers
-    resources :articles
-
+    resources :articles do
+      get 'find' => 'articles#find', as: :due_date, :on => :collection 
+    end
     devise_for :users
     resources :users
 

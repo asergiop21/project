@@ -2,6 +2,8 @@ class Article < ActiveRecord::Base
   scope :con_nombre_barcode, ->(nombre){where("articles.name ILIKE ? or barcode = ?","#{nombre}%".downcase, nombre)}
   scope :con_nombre, ->(nombre){joins(:supplier).where("LOWER(articles.name) ILIKE ?", "#{nombre}%".downcase) }
   scope :con_id, ->(id){ where('id = ?', "#{id}")}
+
+
   has_many :orders
   has_many :stocks
   belongs_to :category
@@ -25,4 +27,11 @@ class Article < ActiveRecord::Base
   def to_s
     name
   end
+
+  def self.current_due_date
+    @date = Date.today + 5
+    @articles = Article.where("due_date <= ?", @date ).order(:due_date)
+    @articles
+  end
+
 end

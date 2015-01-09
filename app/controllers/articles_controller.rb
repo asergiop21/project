@@ -4,6 +4,11 @@ class ArticlesController < ApplicationController
   load_and_authorize_resource
   # GET /articles
   # GET /articles.json
+  def find
+    @articles = Article.current_due_date
+  end
+  
+  
   def index
 
     @articles = Article.order(:name)
@@ -15,6 +20,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
+
+
   end
 
   # GET /articles/new

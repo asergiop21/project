@@ -36,7 +36,7 @@ class AccountingRecordsController < ApplicationController
   # POST /accounting_records
   # POST /accounting_records.json
   def create
-    @accounting_record = AccountingRecord.new(accounting_record_params)
+    @accounting_record = AccountingRecord.new(accounting_record_params).merge(user_id: current_user.id)
 
     respond_to do |format|
       if @accounting_record.save
@@ -81,6 +81,6 @@ class AccountingRecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def accounting_record_params
-      params.require(:accounting_record).permit(:detail, :debit, :credit)
+      params.require(:accounting_record).permit(:detail, :debit, :credit, :user_id)
     end
 end
