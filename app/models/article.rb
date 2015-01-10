@@ -29,7 +29,7 @@ class Article < ActiveRecord::Base
   end
 
   def self.current_due_date
-    @articles = Article.where(due_date: (Time.now.midnight)..(Time.now.midnight + 5.day) )
+    @articles = Article.where(due_date: (Time.now.midnight)..(Time.now.midnight + 6.day)).order(due_date: :asc)
   end
 
 end
