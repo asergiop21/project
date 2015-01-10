@@ -2,8 +2,8 @@ class InvoicesController < ApplicationController
 
   require 'will_paginate'
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
-
-load_and_authorize_resource 
+  before_filter :set_current_user
+  load_and_authorize_resource 
   autocomplete :customer, :name, :extra_data => [:lastname],  :display_value => :display_autocomplete
  
   # GET /invoices

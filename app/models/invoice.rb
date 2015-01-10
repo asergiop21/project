@@ -33,12 +33,9 @@ class Invoice < ActiveRecord::Base
     @invoices = Invoice.where("created_at::date = ?", Date.today) 
   end
 
-
-
   def create_accounting_record_2
-    @a = User.current_user.id
-    pry
-    @record = AccountingRecord.create(detail: "Remito  #{id} " , credit: price_total, invoice_id: id, user_id: current_user.id)
+    @a = User.current.id
+    @record = AccountingRecord.create(detail: "Remito  #{id} " , credit: price_total, invoice_id: id, user_id: User.current.id)
   end
 
 private

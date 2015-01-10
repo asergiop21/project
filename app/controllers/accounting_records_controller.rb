@@ -2,11 +2,15 @@ class AccountingRecordsController < ApplicationController
 
   require 'will_paginate'
   before_action :set_accounting_record, only: [:show, :edit, :update, :destroy]
+  before_filter :set_current_user
 
   # GET /accounting_records
   # GET /accounting_records.json
   def index
-    @accounting_records = AccountingRecord.journal
+   @a = current_user.role
+
+    @accounting_records = AccountingRecord.journal_all if current_user.role == 'admin'
+    @accounting_records = AccountingRecord.journal_user if current_user.role == 'invitado'
     @accounting_records = AccountingRecord.filters(params[:q]) if params[:q].present?
     @credit = AccountingRecord.credit(@accounting_records)
     @debit = AccountingRecord.debit(@accounting_records)

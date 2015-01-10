@@ -2,9 +2,16 @@ class AccountingRecord < ActiveRecord::Base
 
   scope :by_created_at, lambda {|from, to| where("created_at::date >= ? and created_at::date <= ? ", from, to).order(debit: :desc, created_at: :desc)}
 
-  def self.journal
-    @accounting_record = AccountingRecord.where("created_at::date = ?", Date.today).order(debit:  :asc,  created_at: :desc) 
+  belongs_to :user
+
+  def self.journal_user
+    @accounting_record = AccountingRecord.where("created_at::date = ? and user_id =? ", Date.today, User.current.id).order(debit:  :asc,  created_at: :desc) 
   end
+
+  def self.journal_all
+    accounting_record = AccountingRecord.where("created_at::date = ? ", Date.today).order(debit:  :asc,  created_at: :desc) 
+  end
+
 
   def self.filters(filters)  
     q = AccountingRecord.all  
