@@ -29,9 +29,7 @@ class Article < ActiveRecord::Base
   end
 
   def self.current_due_date
-    @date = Date.today + 5
-    @articles = Article.where("due_date <= ?", @date ).order(:due_date)
-    @articles
+    @articles = Article.where(due_date: (Time.now.midnight)..(Time.now.midnight + 5.day) )
   end
 
 end
