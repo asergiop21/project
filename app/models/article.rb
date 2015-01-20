@@ -30,7 +30,6 @@ class Article < ActiveRecord::Base
 
   def self.current_due_date
     @articles = Article.where(due_date: (Time.now.midnight)..(Time.now.midnight + 6.day)).order(due_date: :asc)
-pry
   end
 
 end
