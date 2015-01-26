@@ -6,6 +6,7 @@ class Article < ActiveRecord::Base
 
   has_many :orders
   has_many :stocks
+  has_many :deadlines
   belongs_to :category
   belongs_to :supplier
   def self.quantity_order(id)
@@ -29,7 +30,7 @@ class Article < ActiveRecord::Base
   end
 
   def self.current_due_date
-    @articles = Article.where(due_date: (Time.now.midnight)..(Time.now.midnight + 6.day)).order(due_date: :asc)
+    @articles = Deadline.where(due_date: (Time.now.midnight)..(Time.now.midnight + 15.day)).order(due_date: :asc)
   end
 
 end

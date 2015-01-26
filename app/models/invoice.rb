@@ -11,6 +11,9 @@ class Invoice < ActiveRecord::Base
 
   after_create :create_accounting_record_2
   after_create :create_current_account_2
+  after_update :update_current_account 
+  after_update :update_accounting_record
+
 
   def self.find_by_filters(filters)  
 
@@ -38,10 +41,23 @@ class Invoice < ActiveRecord::Base
     @record = AccountingRecord.create(detail: "Remito  #{id} " , credit: price_total, invoice_id: id, user_id: User.current.id)
   end
 
-private
+  private
 
   def create_current_account_2
     @record_account = CurrentAccount.create(detail: "Remito  #{id} " , credit: price_total, customer_id: customer_id, invoice_id: id )
+
+  end
+
+  def update_accounting_record
+
+    @account_record = AccountingRecord.find_by(invoice_id: self.id)
+    @account_record.update_column(:credit, self.price_total)
+
+  end
+  def update_current_account
+
+    @current_account = CurrentAccount.find_by(invoice_id: self.id)
+    @current_account.update_column(:credit, self.price_total)
 
   end
 

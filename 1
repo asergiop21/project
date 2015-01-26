@@ -1,52 +1,83 @@
-class AccountingRecord < ActiveRecord::Base
+class InvoiceStocksController < ApplicationController
 
-  scope :by_created_at, lambda {|from, to| where("created_at::date >= ? and created_at::date <= ? ", from, to).order("created_at desc")}
+  require 'will_paginate'
+  before_action :set_invoice_stock, only: [:show, :edit, :update, :destroy]
 
-  def self.journal
-    @accounting_record = AccountingRecord.where("created_at::date = ?", Date.today).order(created_at: :desc) 
-
-  end
-
-  def self.filters(filters)  
-    q = AccountingRecord.all  
-    q = by_created_at((filters[:from].to_date), (filters[:to].to_date)) if filters[:from].present? or filters[:to].present?
-    q
-  end
-
-  def self.credit(invoice)
-    sum = 0
-    @invoices = invoice
-    @invoices.each { |a| sum += a.credit.to_f} 
-    sum
-  end
-
-  def self.debit(invoice)
-    sum = 0
-    @invoices = invoice
-    @invoices.each { |a| sum += a.debit.to_f} 
-    sum
-  end
-  def self.total
-    @invoices = AccountingRecord.where("created_at::date = ?", Date.today).sum(:debit)
-  end
-
-  def self.earnings(from=Date.today , to=Date.today )
-    sum = 0 
+  # GET /invoice_stocks
+  # GET /invoice_stocks.json
+  def index
+    @invoice_stocks = InvoiceStock.order(created_at: :desc)
+    @invoice_stocks = @invoice_stocks.paginate(page: params[:page], per_page:10)
   
-    @from = from
-    @to = to
-
-    pry
-
-
-    @earnings = Article.joins(:orders).select('orders.price_total AS price_total', 'articles.price_cost AS price_cost', 'orders.quantity AS quantity').where("orders.created_at::date >= ? and orders.created_at::date <= ?", from, to)
-
-    @earnings.each do |a| 
-      a.quantity = 0 if a.quantity.nil?
-      a.price_cost = 0 if a.price_cost.nil?
-      a.price_total = 0 if a.price_total.nil?
-      sum += a.price_total - (a.price_cost * a.quantity)
     end
-    sum
+
+  # GET /invoice_stocks/1
+  # GET /invoice_stocks/1.json
+  def show
   end
+
+  # GET /invoice_stocks/new
+  def new
+    @invoice_stock = InvoiceStock.new
+
+   stock = @invoice_stock.stocks.build
+   stock.deadlines.build
+    #1.times {@invoice_stock.stocks.build}
+  end
+
+  # GET /invoice_stocks/1/edit
+  def edit
+  end
+
+  # POST /invoice_stocks
+  # POST /invoice_stocks.json
+  def create
+pry
+    @invoice_stock = InvoiceStock.new(invoice_stock_params)
+    #@quantity = Stock.update_quantity(invoice_stock_params[:stocks_attributes])
+    respond_to do |format|
+      if @invoice_stock.save
+        format.html { redirect_to invoice_stocks_path, notice: 'Invoice stock was successfully created.' }
+        format.json { render :show, status: :created, location: @invoice_stock }
+      else
+        format.html { render :new }
+        format.json { render json: @invoice_stock.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /invoice_stocks/1
+  # PATCH/PUT /invoice_stocks/1.json
+  def update
+    respond_to do |format|
+      if @invoice_stock.update(invoice_stock_params)
+        format.html { redirect_to invoice_stocks_path, notice: 'Invoice stock was successfully updated.' }
+        format.json { render :show, status: :ok, location: @invoice_stock }
+      else
+        format.html { render :edit }
+        format.json { render json: @invoice_stock.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /invoice_stocks/1
+  # DELETE /invoice_stocks/1.json
+  def destroy
+    @invoice_stock.destroy
+    respond_to do |format|
+      format.html { redirect_to invoice_stocks_url, notice: 'Invoice stock was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_invoice_stock
+      @invoice_stock = InvoiceStock.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def invoice_stock_params
+      params.require(:invoice_stock).permit(:name, :price_total, stocks_attributes:[:id, :article_id, :price_cost, :quantity, :supplier_id, :category_id, :price_total , deadlines_attributes:[:article_id, :id, :due_date]  ])
+    end
 end

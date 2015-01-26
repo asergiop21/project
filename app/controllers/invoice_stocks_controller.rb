@@ -19,7 +19,11 @@ class InvoiceStocksController < ApplicationController
   # GET /invoice_stocks/new
   def new
     @invoice_stock = InvoiceStock.new
-    1.times {@invoice_stock.stocks.build}
+    @invoice_stock.stocks.build
+    @invoice_stock.stocks.each do |stock| 
+      stock.deadlines.build
+    #1.times {@invoice_stock.stocks.build}
+  end
   end
 
   # GET /invoice_stocks/1/edit
@@ -74,6 +78,7 @@ class InvoiceStocksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_stock_params
-      params.require(:invoice_stock).permit(:name, :price_total, stocks_attributes:[:id, :article_id, :price_cost, :quantity, :supplier_id, :due_date, :category_id, :price_total] )
+      #params.require(:invoice_stock).permit(:name, :price_total, stocks_attributes:[:id, :article_id, :price_cost, :quantity, :supplier_id, :category_id, :price_total , deadlines_attributes:[:stock_id, :article_id,  :due_date, :id]  ])
+      params.require(:invoice_stock).permit(:name, :price_total, stocks_attributes:[:id, :article_id, :price_cost, :quantity, :supplier_id, :category_id, :price_total, :due_date  ])
     end
 end

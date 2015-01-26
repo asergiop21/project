@@ -68,7 +68,7 @@
                     <td><%= article.supplier.name if !article.supplier_id.nil?  %></td>
                     <td><b><%= number_to_currency(article.price_total) %></b></td>
                     <td><%= article.quantity %></td>
-                    <%if can? :update, @article %>
+                    <%if can? :edit, @article %>
                       <td><%= link_to 'Editar', edit_article_path(article) %></td>
                       <td><%= link_to 'Eliminar', article, method: :delete, data: { confirm: 'Estas Seguro?' } %></td>
                     <% end %>

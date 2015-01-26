@@ -76,14 +76,15 @@ $(document).ready(function(){
         var field_quantity = '#invoice_stock_stocks_attributes_' + id[4] + '_quantity';
         var field_price_cost = '#invoice_stock_stocks_attributes_' + id[4] + '_price_cost';
         var field_price_subtotal = '#invoice_stock_stocks_attributes_' + id[4] + '_price_total';
-
         $(field_price_subtotal).val(calculo_subtotal_stock($(field_price_cost).val(), $(field_quantity).val()).toFixed(2) );
-      
     $('#invoice_stock_price_total').val(calculo_total_stock().toFixed(2));
-  
-  
   }); 
-  $('.due_date').datepicker();
+ 
+
+  $(document).on('click', function(){
+  
+  $('.datepicker').datepicker();
+  });
+      
 
 });
-

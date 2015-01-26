@@ -24,7 +24,7 @@
   
 <% @articles.each do |a| %>
 <tr>
-    <td><%= a.name %></td>  
+    <td><%= a.article.name %></td>  
     <td><%= l a.due_date, format: :long %></td>  
 </tr>
 

@@ -19,8 +19,10 @@
 <div class="col-md-12 line3 panel-body">
   <%= f.fields_for :stocks, method: 'get' do |ph| %>
     <%=render 'stocks', f: ph  %>
-    
-<% end %>
+
+  
+  <% end %>
+
     <div class="text-center">
     <%=link_to_add_fields 'Agregar Item', f , :stocks, class:"add_fields" %>
   </div>
@@ -29,7 +31,6 @@
     </div>
 </div> 
 </div>
-
 
 <div class="actions">
   <%= f.submit "Guardar", class: 'btn btn-primary'  %>
