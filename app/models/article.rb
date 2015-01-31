@@ -9,6 +9,13 @@ class Article < ActiveRecord::Base
   has_many :deadlines
   belongs_to :category
   belongs_to :supplier
+
+  
+  accepts_nested_attributes_for :deadlines, :allow_destroy => true 
+
+  
+  
+  
   def self.quantity_order(id)
     id.each do |b|
       stock_current = Article.find(b.article_id).quantity

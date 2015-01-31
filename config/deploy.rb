@@ -13,7 +13,7 @@ set :repo_url, 'git@github.com:asergiop21/project.git'
 # Default value for :scm is :git
  set :scm, :git
 
- set :rbenv_ruby, '2.1.2'
+ set :rbenv_ruby, '2.1.4'
 # Default value for :format is :pretty
 # set :format, :pretty
 

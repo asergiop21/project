@@ -6,9 +6,9 @@
 set :stage, :production
 set :rails_env, 'production'
 
-role :app, %w{deployer@project.com}
-role :web, %w{deployer@project.com}
-role :db,  %w{deployer@project.com}
+role :app, %w{deployer@project2.com}
+role :web, %w{deployer@project2.com}
+role :db,  %w{deployer@project2.com}
 
 
 # Extended Server Syntax
@@ -17,7 +17,7 @@ role :db,  %w{deployer@project.com}
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-server 'project.com', user: 'deployer', roles: %w{web app}, my_property: :my_value
+server 'project2.com', user: 'deployer', roles: %w{web app}, my_property: :my_value
 
 
 # Custom SSH Options

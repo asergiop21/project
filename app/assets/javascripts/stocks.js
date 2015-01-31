@@ -81,10 +81,11 @@ $(document).ready(function(){
   }); 
  
 
-  $(document).on('click', function(){
+  $(document).on('focus click', function(){
   
   $('.datepicker').datepicker();
   });
-      
+
+
 
 });
