@@ -27,7 +27,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
-    1.times {@article.deadlines.new} 
+#    1.times {@article.deadlines.new} 
   end
 
   # GET /articles/1/edit
