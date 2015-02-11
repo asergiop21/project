@@ -2,7 +2,7 @@
 lock '3.2.1'
 
 set :application, 'project'
-set :repo_url, 'git@github.com:asergiop21/project.git'
+set :repo_url, 'git@github.com:asergiop21/project_libreria.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call

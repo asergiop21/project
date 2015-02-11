@@ -14,14 +14,14 @@ default: &default
 
 development:
   <<: *default
-  database: project_development_bk3 
+  database: project_libreria 
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: project_test
+  database: project_libreria_test
 
 production:
   <<: *default

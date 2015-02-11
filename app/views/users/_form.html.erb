@@ -3,6 +3,10 @@
     <div class="col-md-8">
       <%= f.input :name, input_html: { class:'form-control' }, label: User.human_attribute_name(:name) %>
     </div>
+
+    <div class="col-md-8">
+      <%= f.input :username, input_html: { class:'form-control' }, label: User.human_attribute_name(:username) %>
+    </div>
     <div clasS="col-md-8">
       <%= f.input :email, autofocus: true, as: :email, input_html: {class: 'form-control'}, label: User.human_attribute_name(:email)%>
     </div>

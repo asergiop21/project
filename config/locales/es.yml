@@ -106,6 +106,7 @@ es:
         due_date: "Fecha Vencimiento"
       user:
         name: "Nombre"
+        username: "Nombre de Usuario"
         email: "Correo Electronico"
         password: "Contraseña"
         password_confirmation: "Confirmar Contraseña"
