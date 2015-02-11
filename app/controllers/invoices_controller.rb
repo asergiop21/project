@@ -87,6 +87,6 @@ class InvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
-      params.require(:invoice).permit(:id, :customer_id, :price_total, orders_attributes: [:id, :article_id, :quantity, :price_unit, :price_total, :discount, :name])
+      params.require(:invoice).permit(:id, :customer_id, :price_total, :user_id, orders_attributes: [:id, :article_id, :quantity, :price_unit, :price_total, :discount, :name]).merge(user_id: current_user.id)
     end
 end

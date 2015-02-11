@@ -1,6 +1,7 @@
 class CurrentAccount < ActiveRecord::Base
 
   belongs_to :customer
+  belongs_to :invoice
   
 
   def self.total(current_account)

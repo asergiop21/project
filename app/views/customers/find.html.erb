@@ -25,6 +25,7 @@
     <th>Detalle</th>
     <th>Ingreso</th>
     <th>Pago</th>
+    <th>Usuario</th>
   </tr>
 
 <% @customers.each do |account| %>
@@ -33,7 +34,7 @@
     <td><%= link_to account.detail, edit_invoice_path(account.invoice_id) if !account.invoice_id.nil?%></td>
     <td><%= account.credit %></td>
     <td><%= account.debit %></td>
-    <td><%= account.invoice_id %></td>
+    <td><%= account.invoice.user.username if !account.invoice.user.nil? %></td>
   </tr>
   
 <% end %>

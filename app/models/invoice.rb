@@ -1,6 +1,8 @@
 class Invoice < ActiveRecord::Base
 
+
   has_many :orders, dependent: :destroy 
+  has_many :current_accounts
   belongs_to :customer 
   belongs_to :user
 
@@ -57,7 +59,7 @@ class Invoice < ActiveRecord::Base
   def update_current_account
 
     @current_account = CurrentAccount.find_by(invoice_id: self.id)
-    @current_account.update_column(:credit, self.price_total)
+    @current_account.update_columns(credit: self.price_total, customer_id: self.customer_id )
 
   end
 
