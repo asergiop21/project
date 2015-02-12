@@ -23,8 +23,10 @@
           <div class="col-md-8">
             <%= f.label "vencimientos" %>
             <%= f.fields_for :deadlines, method: 'get' do |dd| %>
+            <% if !dd.object.due_date.nil? %>
               <%if dd.object.due_date > Date.today %>
                 <%= render 'deadlines', f: dd %>
+              <% end %>
               <% end %>
             <% end %>
             <div>
