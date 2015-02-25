@@ -71,6 +71,12 @@ $(document).ready(function(){
         var field_unit_price = '#invoice_orders_attributes_' + id[3] + '_price_unit';
         var quantity_stock = '#invoice_orders_attributes_' + id[3] + '_quantity_stock';
         var quantity = '#invoice_orders_attributes_' + id[3] + '_quantity';
+        if ($(quantity).val() == "" )
+        {
+          $('#invoice_orders_attributes_' + id[3] + '_quantity').val(1);
+        
+        }
+
         var price_subtotal = '#invoice_orders_attributes_' + id[3] + '_price_total';
         var discount = '#invoice_orders_attributes_' + id[3] + '_discount';
         $(field_article_id).val(ui.item.item.id);
@@ -87,6 +93,12 @@ $(document).ready(function(){
     var field = this.id;
     var id = field.split("_");
     var quantity = $('#invoice_orders_attributes_'+ id[3]+ '_quantity').val();
+/*    if quantity == ""
+    {
+      $('#invoice_orders_attributes_'+ id[3]+ '_quantity').val("1");
+    }
+*/
+    
     var price_subtotal = '#invoice_orders_attributes_' + id[3] + '_price_total';
     var price = $('#invoice_orders_attributes_' + id[3] + '_price_unit').val();
     var discount = $('#invoice_orders_attributes_' + id[3] + '_discount').val();
