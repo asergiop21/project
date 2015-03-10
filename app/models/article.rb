@@ -25,6 +25,8 @@ class Article < ActiveRecord::Base
       Article.find_by_id(b.article_id).update_attribute(:quantity, stock)
     end
   end
+
+  
   def label
     [barcode, "$ #{price_total}"].compact.join ' | '
   end

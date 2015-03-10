@@ -26,8 +26,12 @@ var calculo_total = function(){
 $(document).ready(function(){
 
   $(document).on('click','.remove_fields_orders', function(event){
-    $(this).closest('tr.line2').find('input[type=hidden]').val('1');
-    var price_remove = $(this).closest('tr.line2').find('input.price_subtotal').val();
+    
+    $(this).closest('tr.line2').find('input.destroy').val('1');
+
+    
+    
+        var price_remove = $(this).closest('tr.line2').find('input.price_subtotal').val();
     var price_total = $('#invoice_price_total').val();
 
     if (price_total == isNaN || price_total == ""){price_total = 0;}
@@ -39,7 +43,10 @@ $(document).ready(function(){
   }
   price_total = $('#invoice_price_total').val(valor);
   $(this).closest('tr.line2').remove()
-    event.preventDefault();
+
+  
+  event.preventDefault();
+
   });
 
   $('table.line1').on('keydown', '[data-autocomplete-for]', function(event){
