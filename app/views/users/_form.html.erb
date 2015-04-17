@@ -14,9 +14,11 @@
       <%= f.input :password, autocomplete: "off" , input_html: {class: 'form-control'}, label: User.human_attribute_name(:password) %>
       <%= f.input :password_confirmation, autocomplete: "off" , input_html: {class: 'form-control'}, label: User.human_attribute_name(:password_confirmation) %>
     </div>
+  <%if current_user.role == 'admin' %>
     <div class="col-md-8">
       <%= f.input :role, collection: User::ROLE,  input_html:{ class: 'form-control'} , label: User.human_attribute_name(:role) %>
     </div>
+  <% end %>
     <div class="col-md-8"><br>
       <%= f.submit "Crear", class: "btn btn-primary" %>
     </div>
