@@ -12,9 +12,6 @@ class Article < ActiveRecord::Base
 
   
   accepts_nested_attributes_for :deadlines, :allow_destroy => true 
-
-  
-  
   
   def self.quantity_order(id)
     id.each do |b|

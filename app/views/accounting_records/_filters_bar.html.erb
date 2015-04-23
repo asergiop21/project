@@ -13,5 +13,11 @@
   <div>
     <%= f.submit  "Filtrar", class: 'btn btn-primary' %>
   </div>
-</div>
+  
+       <% if current_user.role == 'admin' %>
+    <div>
+      <%= link_to "Reporte Diario", daily_report_path %>
+    </div>
+  <% end   %>
+  </div>
 <% end %>

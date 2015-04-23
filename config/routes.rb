@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
     #  scope ":locale", locale: /es|en/ do
     resources :accounting_records
+    get 'daile_report' => 'accounting_records#daily_report', as: :daily_report
 
     resources :categories
     resources :customers do 

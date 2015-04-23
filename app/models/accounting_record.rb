@@ -8,6 +8,20 @@ class AccountingRecord < ActiveRecord::Base
     @accounting_record = AccountingRecord.where("created_at::date = ? and user_id =? ", Date.today, User.current.id).order(debit:  :asc,  created_at: :desc) 
   end
 
+  def self.journal_users
+    @users =  User.all 
+    accounting_record = {}
+    @users.map { |x,y|
+      sum = 0
+      sum =  AccountingRecord.where("created_at::date = ? and user_id =? ", Date.today, x.id).order(debit:  :asc,  created_at: :desc).sum(:debit).to_f 
+      
+      accounting_record[x] = sum
+    }
+    accounting_record
+  
+  end
+
+
   def self.journal_all
     accounting_record = AccountingRecord.where("created_at::date = ? ", Date.today).order(debit:  :asc,  created_at: :desc) 
   end
@@ -22,14 +36,14 @@ class AccountingRecord < ActiveRecord::Base
   def self.credit(invoice)
     sum = 0
     @invoices = invoice
-    @invoices.each { |a| sum += a.credit.to_f} 
+    @invoices.each { |a| sum += a.credit.to_f} if !@invoices.nil? 
     sum
   end
 
   def self.debit(invoice)
     sum = 0
     @invoices = invoice
-    @invoices.each { |a| sum += a.debit.to_f} 
+    @invoices.each { |a| sum += a.debit.to_f} if !@invoices.nil? 
     sum
   end
   def self.total

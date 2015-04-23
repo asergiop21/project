@@ -6,6 +6,11 @@ class AccountingRecordsController < ApplicationController
 
   # GET /accounting_records
   # GET /accounting_records.json
+
+  def daily_report
+        @accounting_users = AccountingRecord.journal_users
+  end
+  
   def index
    @a = current_user.role
 
