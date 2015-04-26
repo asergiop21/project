@@ -13,7 +13,7 @@ class AccountingRecord < ActiveRecord::Base
     accounting_record = {}
     @users.map { |x,y|
       sum = 0
-      sum =  AccountingRecord.where("created_at::date = ? and user_id =? ", Date.today, x.id).order(debit:  :asc,  created_at: :desc).sum(:debit).to_f 
+      sum =  AccountingRecord.where("created_at::date = ? and user_id =? ", Date.today, x.id).order(debit:  :asc,  created_at: :desc).sum(:credit).to_f 
       
       accounting_record[x] = sum
     }

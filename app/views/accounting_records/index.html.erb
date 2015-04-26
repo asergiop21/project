@@ -31,17 +31,14 @@
             </tr>
           <% end %>
 
-       <% if current_user.role == 'admin' %>
           <tr>
             <td></td>
             <td><%= number_to_currency(@credit) %></td>
             <td><%= number_to_currency(@debit) %></td>
           </tr>
-        <% end %>
         </tbody>
       </table>
       
-       <% if current_user.role == 'admin' %>
       <div>
         <h4>Total de Caja: <%= number_to_currency(@caja_total) %></h3>
 
@@ -49,7 +46,6 @@
 
       </div>
 
-       <% end %>
       <%= link_to 'Nuevo Registro', new_accounting_record_path %>
     </div>
   </div>
