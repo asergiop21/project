@@ -30,7 +30,8 @@
             <td><%= user.id %></td>
             <td><%= user.name %></td>
             <td><%= user.role %></td>
-            <td><%= link_to "Editar",  "#" %></td>
+            <td><%= link_to "Editar",  edit_user_path(user) %></td>
+            <td><%= link_to 'Eliminar', user, method: :delete, data: { confirm: 'Estas Seguro?' } %></td>
           </tr>
         <% end %>
 

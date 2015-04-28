@@ -31,19 +31,24 @@
             </tr>
           <% end %>
 
-          <tr>
-            <td></td>
-            <td><%= number_to_currency(@credit) %></td>
-            <td><%= number_to_currency(@debit) %></td>
-          </tr>
+          <% if current_user.role == 'admin' %>
+
+            <tr>
+              <td></td>
+              <td><%= number_to_currency(@credit) %></td>
+              <td><%= number_to_currency(@debit) %></td>
+            </tr>
+          <% end %>
+
         </tbody>
       </table>
-      
+
       <div>
-        <h4>Total de Caja: <%= number_to_currency(@caja_total) %></h3>
+        <% if current_user.role == 'admin' %>
+          <h4>Total de Caja: <%= number_to_currency(@caja_total) %></h3>
 
-         <h4>Total de Ganancia: <%= number_to_currency(@earnings) %></h3>
-
+          <h4>Total de Ganancia: <%= number_to_currency(@earnings) %></h3>
+        <% end %>
       </div>
 
       <%= link_to 'Nuevo Registro', new_accounting_record_path %>

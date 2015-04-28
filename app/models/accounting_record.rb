@@ -9,16 +9,17 @@ class AccountingRecord < ActiveRecord::Base
   end
 
   def self.journal_users
-    @users =  User.all 
+    @users =  User.where(is_deleted: false) 
     accounting_record = {}
     @users.map { |x,y|
-      sum = 0
-      sum =  AccountingRecord.where("created_at::date = ? and user_id =? ", Date.today, x.id).order(debit:  :asc,  created_at: :desc).sum(:credit).to_f 
+      credit = 0
+      debit = 0 
+      credit =  AccountingRecord.where("created_at::date = ? and user_id =? ", Date.today, x.id).order(debit:  :asc,  created_at: :desc).sum(:credit).to_f 
       
-      accounting_record[x] = sum
+      debit =  AccountingRecord.where("created_at::date = ? and user_id =? ", Date.today, x.id).order(debit:  :asc,  created_at: :desc).sum(:debit).to_f 
+      accounting_record[x] = credit - debit
     }
     accounting_record
-  
   end
 
 
