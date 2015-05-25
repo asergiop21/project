@@ -2,19 +2,21 @@ class ArticlesController < ApplicationController
   require 'will_paginate'
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
+  respond_to :html, :csv
   # GET /articles
   # GET /articles.json
   def find
     @articles = Article.current_due_date
   end
-  
-  
+
+
   def index
 
     @articles = Article.order(:name)
     @articles = Article.con_nombre_barcode(params[:q]) if params[:q].present?
     @articles = Article.con_id(params[:article_id]) if params[:article_id].present?
     @articles = @articles.paginate(page: params[:page], per_page: 20)
+    @articles_all = Article.all
   end
 
   # GET /articles/1
@@ -27,7 +29,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
-#    1.times {@article.deadlines.new} 
+    #    1.times {@article.deadlines.new} 
   end
 
   # GET /articles/1/edit

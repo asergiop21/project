@@ -39,4 +39,15 @@ class Article < ActiveRecord::Base
     @articles = Deadline.where(due_date: (Time.now.midnight)..(Time.now.midnight + 15.day)).order(due_date: :asc)
   end
 
+  def self.to_csv
+
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |product|
+        csv << product.attributes.values_at(*column_names)
+      end
+    end
+  end
+
+
 end
