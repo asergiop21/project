@@ -12,11 +12,13 @@ class ArticlesController < ApplicationController
 
   def index
 
+
     @articles = Article.order(:name)
-    @articles = Article.con_nombre_barcode(params[:q]) if params[:q].present?
-    @articles = Article.con_id(params[:article_id]) if params[:article_id].present?
+    @articles = @articles.where(:supplier_id => params[:supplier_id])  if params[:supplier_id].present?
+    @articles = @articles.con_nombre_barcode(params[:q]) if params[:q].present?
+    @articles = @articles.con_id(params[:article_id]) if params[:article_id].present?
     @articles = @articles.paginate(page: params[:page], per_page: 20)
-    @articles_all = Article.all
+
   end
 
   # GET /articles/1

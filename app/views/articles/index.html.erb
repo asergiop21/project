@@ -13,8 +13,16 @@
   <div class="row">
     <div class="col-sm-3 col-md-2 sidebar">
       <%= simple_form_for '', method: 'get' do |f| %>
+        
+        <div>
+          <%= f.input :supplier_id, label: 'Proveedor ' do %><br>
+            <%= f.collection_select :supplier_id,  Supplier.order(:name), :id, :name, class: "form-control", label: false, prompt: "Seleccione un provee" %>
+          <% end  %>
+        </div>
+        
+        
         <div class="articulox">
-          <%= f.input( :q, label: 'Articulos',  input_html: {
+          <%= f.input( :q, label: 'Articulos', required: false,  input_html: {
             class: 'form-control',
             data: {'autocomplete-field' => true,
                    'autocomplete-for' => '#_article_id',
@@ -22,6 +30,11 @@
           } 
           }) %>
         <%= f.input :article_id, as: :hidden%>
+
+        </div>
+
+        <div>
+           <%= f.submit "Buscar"%>
 
         </div>
         <div>
