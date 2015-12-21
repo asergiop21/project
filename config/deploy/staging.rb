@@ -6,9 +6,9 @@
 set :stage, :production
 set :rails_env, 'production'
 
-role :app, %w{deployer@project.com}
-role :web, %w{deployer@project.com}
-role :db,  %w{deployer@project.com}
+role :app, %w{deployer@project2.com}
+role :web, %w{deployer@project2.com}
+role :db,  %w{deployer@project2.com}
 
 
 # Extended Server Syntax
