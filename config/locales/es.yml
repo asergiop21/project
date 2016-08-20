@@ -81,7 +81,12 @@ es:
       - :day
       - :month
       - :year
-
+  errors:
+    messages:
+      blank: 'No puede estar en blanco'
+      not_a_number: 'No es un número'
+    template:
+      body: ! 'Se encontraron problemas con los siguientes campos:'
   activerecord:
     errors:
       models:
@@ -92,8 +97,14 @@ es:
             password: 
               blank: "No puede estar en Blanco"
               too_short: "No puede ser menor a %{count} caracteres "
+        article:
+          attributes:
+            name:
+              blank: "No puede estar en Blanco"
+              too_short: "No puede ser menor a %{count} caracteres "
     models:
       customer: "Clientes"
+      invoice: "Remito"
     attributes:
       customer:
         name: "Nombre"
@@ -104,14 +115,19 @@ es:
         price_total: "Precio Publico"
         quantity: "Stock"
         due_date: "Fecha Vencimiento"
+        price_cost: "Precio de Costo" 
+        percentaje: "Porcentaje"
+        quantity_package: Cantidad por bulto
+        minimum_stock: Stock Minimo
+        allow_negative: Permitir Negavito
       user:
         name: "Nombre"
-        username: "Nombre de Usuario"
         email: "Correo Electronico"
         password: "Contraseña"
         password_confirmation: "Confirmar Contraseña"
         role: "Tipo de Usuario"
   helpers:
-    create: "Crear %{model}"
-    submit: "Guardar111 %{model}"
-    update: "Actualizar %{model}"
+    submit:
+      create: "Crear %{model}"
+      submit: "Guardar %{model}"
+      update: "Actualizar %{model}"

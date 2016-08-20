@@ -1,4 +1,8 @@
 class Article < ActiveRecord::Base
+
+  has_attached_file :image, styles: {medium: '200x200>', small: '100x100' , thumb:'48x48>'}
+  validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+
   scope :con_nombre_barcode, ->(nombre){where("articles.name ILIKE ? or barcode = ?","#{nombre}%".downcase, nombre)}
   scope :con_nombre, ->(nombre){joins(:supplier).where("LOWER(articles.name) ILIKE ?", "#{nombre}%".downcase) }
   scope :con_id, ->(id){ where('id = ?', "#{id}")}
@@ -10,9 +14,9 @@ class Article < ActiveRecord::Base
   belongs_to :category
   belongs_to :supplier
 
-  
+  delegate :name, to: :supplier, prefix: true, allow_nil: true
   accepts_nested_attributes_for :deadlines, :allow_destroy => true 
-  
+
   def self.quantity_order(id)
     id.each do |b|
       stock_current = Article.find(b.article_id).quantity
@@ -23,12 +27,15 @@ class Article < ActiveRecord::Base
     end
   end
 
-  
+  def lab
+    [name]
+  end
+
   def label
-    [barcode, "$ #{price_total}"].compact.join ' | '
+    [barcode, name,supplier.try(:name),"$  #{price_total}"].compact.join ' | '
   end
   def as_json options = nil
-    default_options = { only: [:id, :price_total], methods: [:label] }
+    default_options = { only: [:id, :price_total, :quantity, :price_cost, :allow_negative], methods: [:label] }
     super default_options.merge(options || {})
   end
   def to_s
@@ -48,6 +55,4 @@ class Article < ActiveRecord::Base
       end
     end
   end
-
-
 end

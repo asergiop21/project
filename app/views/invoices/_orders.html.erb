@@ -1,29 +1,35 @@
-<tr class="line2">
-  <td class="col-md-6">
+<span class="line2 form-group clearfix">
+<div class="col-xs-12 col-sm-3 col-md-4 col-lg-4">
   <%= f.input( :name, label: false, :autofocus => true, input_html: {
     class: 'form-control name ',
+    placeholder: "Ingrese Producto",
     data: {'autocomplete-field' => true,
             'autocomplete-for' => '#invoice_orders_#{id}_article_id',
             'autocomplete-url' => articles_path(format: :json)
   } 
   }) %>
-  <%= f.input :article_id, :input_html => {class: 'form-control'} , as: :hidden, label: false%>
-  </td>
-  <td class="col-md-2">
-    <%= f.input :quantity, label: false, as: :string, :input_html => {:class => "form-control quantity"}  %>
-  </td>
-  <td class="col-md-1">
-  <%= f.input :discount, label: false, as: :string, :input_html => {:class => "form-control discount"}  %>
-  </td>
-  <td>
-  <%= f.input :price_unit, label: false, as: :string, :input_html => {:class => "form-control price_unit price_unit_add "}  %>
-  </td>
-  <td>
-  <%= f.input :price_total, label: false, as: :string, :input_html => {:class => "form-control price_subtotal"} %>
-  </td>
-  <td>
-    <%= f.hidden_field :_destroy, :input_html=> {class: "destroy"} %>
-  <%= link_to "X", "#", class: "remove_fields_orders" %>
-  </td>
+  <%= f.input :article_id,  as: :hidden, label: false%>
+  </div>
+  <div  class="col-xs-12 col-sm-2 col-md-2">
 
-</tr>
+    <%= f.input :quantity_stock, as: :hidden, label: false  %>
+    <%= f.input :allow_negative, as: :hidden,  label: false  %>
+    <% if params[:action] == 'new' || params[:action] =='create'  %>
+      <%= f.input :quantity, label: false, as: :string, :input_html => {:class => "form-control quantity", value: 1}  %>
+    <% else %>
+      <%= f.input :quantity, label: false, as: :string, :input_html => {:class => "form-control quantity"}, placeholder: "Ingrese Cantidad"   %>
+    <% end %>
+  </div>
+  <div class="col-xs-12 col-sm-2 col-md-2">
+  <%= f.input :price_unit, label: false, as: :string, :input_html => {:class => "form-control price_unit price_unit_add "}, placeholder: "Precio Unitario"  %>
+  <%= f.input :price_original, as: :hidden, label: false,  :input_html => {:class => "form-control price_original "}  %>
+  </div>
+  <div class="col-xs-12 col-sm-2 col-md-2">
+  <%= f.input :price_total, label: false, as: :string, :input_html => {:class => "form-control price_subtotal"}, placeholder: "Precio Total" %>
+  </div>
+  <%= f.hidden_field :_destroy %>
+  
+  <div class="col-xs-12 col-sm-1 col-md-1">
+    <%= link_to "X", "#", class: "remove_fields_orders btn btn-danger" %>
+</div>
+</span>

@@ -17,6 +17,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'will_paginate', '~>3.0'
+gem 'paperclip'
 group :development do 
   gem 'capistrano'
   gem 'capistrano-rails'
