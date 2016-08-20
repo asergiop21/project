@@ -15,7 +15,7 @@ set :deploy_to, '/var/www/project'
 set :scm, :git
 
 #set :rbenv_ruby, '2.2.0'
-set :rbenv_ruby, '2.2.4'
+set :rbenv_ruby, '2.1.2'
 # Default value for :format is :pretty
 # set :format, :pretty
 
