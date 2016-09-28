@@ -35,7 +35,7 @@ class Article < ActiveRecord::Base
     [barcode, name,supplier.try(:name),"$  #{price_total}"].compact.join ' | '
   end
   def as_json options = nil
-    default_options = { only: [:id, :price_total, :quantity, :price_cost, :allow_negative], methods: [:label] }
+    default_options = { only: [:id, :price_total, :quantity, :price_cost, :allow_negative, :allow_change_price], methods: [:label] }
     super default_options.merge(options || {})
   end
   def to_s

@@ -4,11 +4,16 @@ Rails.application.routes.draw do
   #scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
 
 
+
   scope ':locale', locale: /#{I18n.available_locales.join("|")}/ do
+
+    get 'stock' => 'reports#minimum_stock', as: :stock
 
     #  scope ":locale", locale: /es|en/ do
     resources :accounting_records
     get 'daile_report' => 'accounting_records#daily_report', as: :daily_report
+
+
 
     resources :categories
     resources :customers do 

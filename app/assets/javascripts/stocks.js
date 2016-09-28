@@ -27,8 +27,8 @@ $(document).ready(function(){
 
   $(document).on('click','.remove_fields_stocks', function(event){
     $(this).closest('div.line3').find('input[type=hidden]').val('1');
-  $(this).closest('div.line3').hide()
-    event.preventDefault();
+    $(this).closest('div.line3').hide()
+      event.preventDefault();
   });
 
   $('div.line3').on('keydown', '[data-autocomplete-for]', function(event){
@@ -46,10 +46,10 @@ $(document).ready(function(){
           dataType: 'json', data: { q: request.term },
           success: function(data) {
             response(
-              $.map(data, function(item) {
-                return {label:item.barcode + " - " + item.name, item: item};
-              })
-              );
+                $.map(data, function(item) {
+                  return {label:item.label, item: item};
+                })
+                );
           },
         });
       },
@@ -61,31 +61,28 @@ $(document).ready(function(){
         var id = field.split("_");
         var field_article_id = '#invoice_stock_stocks_attributes_' + id[4] + '_article_id';
         var category_id = '#invoice_stock_stocks_attributes_' + id[4] + '_category_id';
+        var price_cost = '#invoice_stock_stocks_attributes_' + id[4] + '_price_cost';
         var option_category = ui.item.item.category_id;
         $(category_id).val(option_category);
         $(field_article_id).val(ui.item.item.id);
-      
+         $(price_cost).val(ui.item.item.price_cost);
+
       }
     }).removeAttr('data-autocomplete-field');
   });
 
   $(document).on('blur', '.price_cost_stock', function(){
-  
+
     var field = this.id;
     var id = field.split("_");
-        var field_quantity = '#invoice_stock_stocks_attributes_' + id[4] + '_quantity';
-        var field_price_cost = '#invoice_stock_stocks_attributes_' + id[4] + '_price_cost';
-        var field_price_subtotal = '#invoice_stock_stocks_attributes_' + id[4] + '_price_total';
-        $(field_price_subtotal).val(calculo_subtotal_stock($(field_price_cost).val(), $(field_quantity).val()).toFixed(2) );
+    var field_quantity = '#invoice_stock_stocks_attributes_' + id[4] + '_quantity';
+    var field_price_cost = '#invoice_stock_stocks_attributes_' + id[4] + '_price_cost';
+    var field_price_subtotal = '#invoice_stock_stocks_attributes_' + id[4] + '_price_total';
+    $(field_price_subtotal).val(calculo_subtotal_stock($(field_price_cost).val(), $(field_quantity).val()).toFixed(2) );
     $('#invoice_stock_price_total').val(calculo_total_stock().toFixed(2));
-  }); 
- 
-
-  $(document).on('focus click', function(){
-  
-  $('.datepicker').datepicker();
   });
 
-
-
+  $(document).on('focus click', function(){
+    $('.datepicker').datepicker();
+  });
 });

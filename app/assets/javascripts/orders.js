@@ -51,12 +51,8 @@ var last_field = function(){
   $(document).find('.price_subtotal').each(function(){
    precio = $(this).val();
   });
-
     return precio;
-
 };
-
-
 
 $(document).ready(function(){
 
@@ -111,9 +107,6 @@ $(document).ready(function(){
         var price_subtotal = '#invoice_orders_attributes_' + id[3] + '_price_total';
         var allow_negative = '#invoice_orders_attributes_' + id[3] + '_allow_negative';
 
-
-
-
           if (ui.item.item.quantity < 1 )
 //              && ui.item.item.allow_negative == false )
           { 
@@ -122,6 +115,14 @@ $(document).ready(function(){
             $quantity = 0 ;
             $(this).css("color","red");
           } 
+
+
+
+          if (ui.item.item.allow_change_price == true)
+          {
+           $(field_unit_price).attr('readonly', false); 
+          }
+
 
           $(field_article_id).val(ui.item.item.id);
           $(field_unit_price).val(ui.item.item.price_total);
@@ -148,7 +149,10 @@ $(document).ready(function(){
     var price = $('#invoice_orders_attributes_' + id[3] + '_price_unit').val();
     var allow_negative   = $('#invoice_orders_attributes_' + id[3] + '_allow_negative').val();
     
-/*    if (package_qty == "" || parseFloat(package_qty) == 0)
+  //  var allow_change_price = $('invoice_orders_attributes_'+ id[3] + '_allow_)
+    
+    
+    /*    if (package_qty == "" || parseFloat(package_qty) == 0)
   {
       package_qty = 1 ;
       $('#invoice_orders_attributes_' + id[3] + '_package').val(1);

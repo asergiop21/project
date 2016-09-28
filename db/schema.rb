@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160526032822) do
+ActiveRecord::Schema.define(version: 20160928134127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20160526032822) do
     t.decimal  "minimum_stock",      precision: 8, scale: 2
     t.decimal  "quantity_package",   precision: 8, scale: 2
     t.decimal  "iva",                precision: 4, scale: 2
+    t.boolean  "allow_change_price",                         default: false
   end
 
   add_index "articles", ["id"], name: "index_articles_on_id", using: :btree
