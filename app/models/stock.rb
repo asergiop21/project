@@ -13,22 +13,24 @@ class Stock < ActiveRecord::Base
   
   #accepts_nested_attributes_for :deadlines
 
-  attr_accessor :due_date
+  attr_accessor :due_date, :stock
 
   def to_s
     name
   end
 
   def update_quantity
-   
+  
+    
+    #stock_new = self.stock.to_f + self.quantity.to_f
+
     @article= Article.find(article_id)
     @article.quantity = 0 if @article.quantity.nil?
     quantity_new = 0 if quantity_new.nil?
-    quantity_new += @article.quantity
+    quantity_new = @article.quantity + self.quantity
     percentaje = @article.percentaje.to_f 
     price_total_total = ((self.price_cost.to_f * percentaje)/100 + self.price_cost.to_f)
-    @article.update_columns quantity: quantity, category_id: category_id, price_total: price_total_total, price_cost: price_cost
-
+    @article.update_columns quantity: quantity_new, supplier_id: supplier_id, price_total: price_total_total, price_cost: price_cost
   end
 
   def create_due_date

@@ -62,10 +62,12 @@ $(document).ready(function(){
         var field_article_id = '#invoice_stock_stocks_attributes_' + id[4] + '_article_id';
         var category_id = '#invoice_stock_stocks_attributes_' + id[4] + '_category_id';
         var price_cost = '#invoice_stock_stocks_attributes_' + id[4] + '_price_cost';
+        var stock = '#invoice_stock_stocks_attributes_' + id[4] + '_stock';
         var option_category = ui.item.item.category_id;
         $(category_id).val(option_category);
         $(field_article_id).val(ui.item.item.id);
          $(price_cost).val(ui.item.item.price_cost);
+         $(stock).val(ui.item.item.quantity);
 
       }
     }).removeAttr('data-autocomplete-field');
