@@ -1,5 +1,5 @@
 # config valid only for Capistrano 3.1
-lock '3.2.1'
+lock '3.6.1'
 
 set :application, 'project'
 set :repo_url, 'git@github.com:asergiop21/project.git'
