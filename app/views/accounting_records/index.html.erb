@@ -1,12 +1,13 @@
 <div class="col-md-12"> 
 <div class="form-group">
-  <div class="col-md-2 sidebar">
+  <div class="col sm-12 col-md-2 sidebar">
     <%= render :partial => 'filters_bar' %>
   </div>
   <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <div class="col-md-8 customer">
 
       <h1>Caja Diaria</h1>
+<% if !@accounting_records.nil? %>
       <%= will_paginate @accounting_records %>
       <table class="table">
         <thead>
@@ -43,6 +44,7 @@
         </tbody>
       </table>
 
+    <% end %>
       <div>
         <% if current_user.role == 'admin' %>
           <h4>Total de Caja: <%= number_to_currency(@caja_total) %></h3>
@@ -51,7 +53,13 @@
         <% end %>
       </div>
 
-      <%= link_to 'Nuevo Registro', new_accounting_record_path %>
+
+      <%= link_to 'Nuevo Registro', new_accounting_record_path, class: "btn btn-primary" %>
+<% if current_user.role == 'admin' %>  
+    <div>
+      <%= link_to "Reporte Diario", daily_report_path %>
+    </div>
+  <% end %>
     </div>
   </div>
 </div>

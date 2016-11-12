@@ -1,5 +1,5 @@
 <%= form_for '', :method => :get  do |f| %>
-  <div>
+  <div class="col-sm-12">
   <ul class="nav nav-list bordered">
 
     <li class="nav-header bordered">
@@ -11,12 +11,13 @@
     </li>
   </ul>
   <div>
+    <%= select_tag  'user_id', options_from_collection_for_select(User.all, :id, :name)  %>
+  </div>
+  
+  
+  <div>
     <%= f.submit  "Filtrar", class: 'btn btn-primary' %>
   </div>
-<% if current_user.role == 'admin' %>  
-    <div>
-      <%= link_to "Reporte Diario", daily_report_path %>
-    </div>
-  <% end %>
+  
   </div>
 <% end %>
