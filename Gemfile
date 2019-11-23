@@ -22,6 +22,7 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
+  gem 'capistrano-rvm'
   gem 'capistrano-bundler'
   gem 'pry'
 end
