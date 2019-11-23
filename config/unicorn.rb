@@ -1,13 +1,19 @@
-root = "/var/www/project_libreria/current"
-working_directory  root
-pid "/var/www/project_libreria/shared/pids/unicorn.pid"
-stderr_path "#{root}/log/unicorn.log"
-stdout_path "#{root}/log/unicorn.log"
+#set path to the application
+app_dir= "/opt/project"
+shared_dir = "#{app_dir}/shared/tmp"
+working_directory "#{app_dir}/current"
 
-listen "/tmp/unicorn.project_libreria.sock"
-worker_processes 1
-timeout 600
+# Set unicorn options
+worker_processes 2
+preload_app true
+timeout 3000
 
-#before_exec do |_|
-#    ENV["BUNDLE_GEMFILE"] = File.join(root, 'Gemfile')
-#end
+# Path for the Unicorn socket
+listen "#{shared_dir}/sockets/unicorn.sock", :backlog => 64
+
+# Set path for logging
+stderr_path "/opt/project/shared/log/unicorn.stderr.log"
+stdout_path "/opt/project/shared/log/unicorn.stdout.log"
+
+# Set proccess id path
+pid "#{shared_dir}/pids/unicorn.pid"                                            
