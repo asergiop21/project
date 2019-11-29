@@ -4,8 +4,11 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-
-    @categories = Category.total(params[:q][:from], params[:q][:to])
+    if params.has_key? :q  
+      @categories = Category.total(params[:q][:from], params[:q][:to])
+    else
+      @categories = Category.total()
+  end
   end
 
   # GET /categories/1
