@@ -106,6 +106,7 @@ $(document).ready(function(){
         var quantity = '#invoice_orders_attributes_' + id[3] + '_quantity';
         var price_subtotal = '#invoice_orders_attributes_' + id[3] + '_price_total';
         var allow_negative = '#invoice_orders_attributes_' + id[3] + '_allow_negative';
+        var price_cost = '#invoice_orders_attributes_' + id[3] + '_price_cost';
 
           if (ui.item.item.quantity < 1 )
 //              && ui.item.item.allow_negative == false )
@@ -129,6 +130,7 @@ $(document).ready(function(){
           $(field_unit_price_original).val(ui.item.item.price_total);
           $(allow_negative).val(ui.item.item.allow_negative);
           $(quantity_stock).val(ui.item.item.quantity);
+          $(price_cost).val(ui.item.item.price_cost);
           $(price_subtotal).val(calculo_subtotal(ui.item.item.price_total, $(quantity).val() ).toFixed(2) );
           $('#invoice_subtotal').val(calculo_invoice_subtotal().toFixed(2));
           $('#invoice_price_total').val(calculo_total().toFixed(2));
