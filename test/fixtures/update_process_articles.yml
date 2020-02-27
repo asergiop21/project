@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  supplier_id: 
+  updated: 1
+  failed: 1
+  user_id: 
+  percentage: 
+
+two:
+  supplier_id: 
+  updated: 1
+  failed: 1
+  user_id: 
+  percentage: 

@@ -1,0 +1,24 @@
+<%= simple_form_for(@update_process_article) do |f| %>
+  <% if @update_process_article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@update_process_article.errors.count, "error") %> prohibited this update_process_article from being saved:</h2>
+
+      <ul>
+      <% @update_process_article.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.input :supplier_id, collection: suppliers_for_select %>
+  </div>
+  <div class="field">
+    <%= f.label :percentage %><br>
+    <%= f.text_field :percentage %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

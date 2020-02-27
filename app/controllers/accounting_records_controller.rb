@@ -12,15 +12,16 @@ class AccountingRecordsController < ApplicationController
   end
   
   def index
-   @a = current_user.role
 
-    @accounting_records = AccountingRecord.journal_all if current_user.role == 'admin'
-    @accounting_records = AccountingRecord.journal_user if current_user.role == 'invitado'
+    @accounting_records = AccountingRecord.journal
+    #@accounting_records = AccountingRecord.journal_all if current_user.role == 'admin'
+    #@accounting_records = AccountingRecord.journal_user if current_user.role == 'invitado'
     @accounting_records = AccountingRecord.filters(params[:q]) if params[:q].present?
     @credit = AccountingRecord.credit(@accounting_records)
     @debit = AccountingRecord.debit(@accounting_records)
     @caja_total = @credit - @debit
-    @accounting_records =  @accounting_records.paginate(page: params[:page], per_page:10)
+
+    @accounting_records =  @accounting_records.paginate(page: params[:page], per_page:10) if !@accounting_records.nil?
     
     @earnings = AccountingRecord.earnings(params[:q]) if params[:q].present? 
     @earnings = AccountingRecord.earnings if (params[:q].nil?)

@@ -42,6 +42,13 @@ class InvoicesController < ApplicationController
   def create
     @invoice = Invoice.new(invoice_params)
     @id = @invoice.orders(params[:article_id])
+    @invoice.orders.each do |order|
+      begin
+        order.profit = (order.price_unit - order.price_cost) * order.quantity
+      rescue
+        order.profit  = 0
+      end
+    end
     @quantity = Article.quantity_order(@id)
     respond_to do |format|
       if @invoice.save
@@ -86,6 +93,6 @@ class InvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
-      params.require(:invoice).permit(:id, :customer_id, :price_total, :user_id, orders_attributes: [:id, :article_id, :quantity, :price_unit, :price_total, :discount, :name]).merge(user_id: current_user.id)
+      params.require(:invoice).permit(:id, :customer_id, :price_total, :user_id, orders_attributes: [:id, :article_id, :quantity, :price_unit, :price_total, :discount, :name, :price_cost, :profit]).merge(user_id: current_user.id)
     end
 end

@@ -1,0 +1,10 @@
+<h1>Eventos</h1>
+
+<%= simple_form_for(:article, url: update_article_blocks_url) do |f|  %>  
+
+  <%= f.input :supplier_id, collection: Supplier.all  %>
+  <%= f.input :percentage  %>
+
+  <%= f.submit %>
+
+<% end %>

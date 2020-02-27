@@ -1,0 +1,33 @@
+<h1>Listing update_process_articles</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Supplier</th>
+      <th>Updated</th>
+      <th>Failed</th>
+      <th>User</th>
+      <th>Percentage</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @update_process_articles.each do |update_process_article| %>
+      <tr>
+        <td><%= update_process_article.supplier %></td>
+        <td><%= update_process_article.updated %></td>
+        <td><%= update_process_article.failed %></td>
+        <td><%= update_process_article.user %></td>
+        <td><%= update_process_article.percentage %></td>
+        <td><%= link_to 'Show', update_process_article %></td>
+        <td><%= link_to 'Edit', edit_update_process_article_path(update_process_article) %></td>
+        <td><%= link_to 'Destroy', update_process_article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Update process article', new_update_process_article_path %>

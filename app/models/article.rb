@@ -1,5 +1,7 @@
 class Article < ActiveRecord::Base
 
+  has_paper_trail
+ 
   has_attached_file :image, styles: {medium: '200x200>', small: '100x100' , thumb:'48x48>'}
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
@@ -55,4 +57,23 @@ class Article < ActiveRecord::Base
       end
     end
   end
+  def self.update_article_blocks params
+
+    article = Article.where(supplier_id: params[:supplier_id])
+    @updated = 0
+    @failed = 0
+    article.each do |a|
+      price_cost = ((a.price_cost.to_f * params[:percentage].to_f) / 100 ) + a.price_cost.to_f
+      price_total = ((price_cost * a.percentaje) / 100 ) + price_cost
+  
+      a.update(price_cost: price_cost, price_total: price_total)
+      if a.valid?
+        @updated = @updated + 1 
+      else
+        @failed = @failed + 1
+    end
+  end
+    [@updated, @failed]
+  end
+
 end

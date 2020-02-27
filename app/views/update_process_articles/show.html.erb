@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Supplier:</strong>
+  <%= @update_process_article.supplier %>
+</p>
+
+<p>
+  <strong>Updated:</strong>
+  <%= @update_process_article.updated %>
+</p>
+
+<p>
+  <strong>Failed:</strong>
+  <%= @update_process_article.failed %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @update_process_article.user %>
+</p>
+
+<p>
+  <strong>Percentage:</strong>
+  <%= @update_process_article.percentage %>
+</p>
+
+<%= link_to 'Edit', edit_update_process_article_path(@update_process_article) %> |
+<%= link_to 'Back', update_process_articles_path %>

@@ -4,8 +4,13 @@ class AccountingRecord < ActiveRecord::Base
 
   belongs_to :user
 
-  def self.journal_user
-    @accounting_record = AccountingRecord.where("created_at::date = ? and user_id =? ", Date.today, User.current.id).order(debit:  :asc,  created_at: :desc) 
+
+  def self.journal
+     p User.current.id
+
+    @accounting_record = AccountingRecord.where("created_at::date = ? and user_id =? ", Date.today, User.current.id).order(debit:  :asc,  created_at: :desc) if User.current.role == 'invitado' 
+    @accounting_record = AccountingRecord.where("created_at::date = ? ", Date.today).order(debit:  :asc,  created_at: :desc) if User.current.role == 'admin' 
+
   end
 
   def self.journal_users
@@ -22,10 +27,6 @@ class AccountingRecord < ActiveRecord::Base
     accounting_record
   end
 
-
-  def self.journal_all
-    accounting_record = AccountingRecord.where("created_at::date = ? ", Date.today).order(debit:  :asc,  created_at: :desc) 
-  end
 
 
   def self.filters(filters)  

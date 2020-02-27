@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928134127) do
+ActiveRecord::Schema.define(version: 20200118231447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +115,8 @@ ActiveRecord::Schema.define(version: 20160928134127) do
     t.datetime "updated_at"
     t.decimal  "discount",    precision: 8, scale: 2
     t.string   "name"
+    t.decimal  "price_cost"
+    t.decimal  "profit"
   end
 
   add_index "orders", ["id"], name: "index_orders_on_id", using: :btree
@@ -123,12 +125,12 @@ ActiveRecord::Schema.define(version: 20160928134127) do
     t.integer  "article_id"
     t.decimal  "quantity",         precision: 8, scale: 2
     t.decimal  "price_cost",       precision: 8, scale: 2
+    t.integer  "supplier_id"
     t.integer  "invoice_stock_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "price_total"
     t.integer  "category_id"
-    t.integer  "supplier_id"
   end
 
   create_table "suppliers", force: true do |t|
@@ -137,6 +139,19 @@ ActiveRecord::Schema.define(version: 20160928134127) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "update_process_articles", force: true do |t|
+    t.integer  "supplier_id"
+    t.integer  "updated"
+    t.integer  "failed"
+    t.integer  "user_id"
+    t.float    "percentage"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "update_process_articles", ["supplier_id"], name: "index_update_process_articles_on_supplier_id", using: :btree
+  add_index "update_process_articles", ["user_id"], name: "index_update_process_articles_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",         null: false
