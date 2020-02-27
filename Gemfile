@@ -18,6 +18,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'will_paginate', '~>3.0'
 gem 'paperclip'
+gem 'paper_trail'
 group :development do 
   gem 'capistrano'
   gem 'capistrano-rails'
