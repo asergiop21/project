@@ -34,7 +34,7 @@
             <%= f.input :iva, as: :string, input_html: {class: 'form-control'} %>
             <%= f.input :price_total ,as: :string, input_html: {class: 'form-control'}, readonly: true  %>
 
-           <% if params[:action]  != "new"  && params[:action] != 'create' %>
+           <% if params[:action]  == "new"  || params[:action] == 'create' %>
             <%= f.input :quantity, as: :string, input_html: {class: 'form-control'}   %>
           <%end  %>
             <%= f.input :barcode, label: 'Codigo de Barra', :input_html => {class: 'form-control col-md-5'}    %>
