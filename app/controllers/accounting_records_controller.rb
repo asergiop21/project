@@ -13,9 +13,7 @@ class AccountingRecordsController < ApplicationController
   
   def index
 
-    @accounting_records = AccountingRecord.journal
-    #@accounting_records = AccountingRecord.journal_all if current_user.role == 'admin'
-    #@accounting_records = AccountingRecord.journal_user if current_user.role == 'invitado'
+    @accounting_records = AccountingRecord.journal(current_user.id, current_user.role)
     @accounting_records = AccountingRecord.filters(params[:q]) if params[:q].present?
     @credit = AccountingRecord.credit(@accounting_records)
     @debit = AccountingRecord.debit(@accounting_records)
@@ -25,8 +23,6 @@ class AccountingRecordsController < ApplicationController
     
     @earnings = AccountingRecord.earnings(params[:q]) if params[:q].present? 
     @earnings = AccountingRecord.earnings if (params[:q].nil?)
-
-  
   end
 
   # GET /accounting_records/1

@@ -5,12 +5,11 @@ class AccountingRecord < ActiveRecord::Base
   belongs_to :user
 
 
-  def self.journal
-     p User.current.id
+  def self.journal(user_id, role)
+    @accounting_record = AccountingRecord.where("created_at::date = ? and user_id =? ", Date.today, user_id).order(debit:  :asc,  created_at: :desc) if role == 'invitado' 
+    @accounting_record = AccountingRecord.where("created_at::date = ? ", Date.today).order(debit:  :asc,  created_at: :desc) if role == 'admin' 
 
-    @accounting_record = AccountingRecord.where("created_at::date = ? and user_id =? ", Date.today, User.current.id).order(debit:  :asc,  created_at: :desc) if User.current.role == 'invitado' 
-    @accounting_record = AccountingRecord.where("created_at::date = ? ", Date.today).order(debit:  :asc,  created_at: :desc) if User.current.role == 'admin' 
-
+    @accounting_record
   end
 
   def self.journal_users
